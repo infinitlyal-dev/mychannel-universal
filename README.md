@@ -1,37 +1,109 @@
 # Universal My-Channel
 
-Universal My-Channel. Fresh project, separate from v5 Netflix demo at `mychannel-v5.html`. Do not cross-contaminate.
+Universal My-Channel. Cross-streamer personal TV channel app. TV + phone,
+multi-region from v1. Separate product from the v5 Netflix demo
+(`mychannel-v5.html`, preserved live at `mychannel-app.vercel.app/mychannel-v5.html`).
+Do not cross-contaminate.
 
-## What this is
+## Three workstreams
 
-A standalone cross-streamer personal TV channel app. TV + phone, multi-region (US, UK, CA, AU, ZA minimum), built from the Editorial Cinema visual register calibrated at `C:\Users\27741\OneDrive\Desktop\MCN\calibration-hero-v3.html`.
+Work is split across three tools on three branches. Each workstream owns its
+directory exclusively — no cross-writing. All three consume `/shared/` as the
+contract surface.
 
-Shares DNA with v5 (Al voice pipeline, Rachel intro, SFX, TMDB integration, state schema) but built fresh — NOT an evolution of v5.
+| Stream | Tool | Branch | Directory | Deliverable |
+|---|---|---|---|---|
+| A — Backend | Codex | `backend` | `/api/` | Vercel proxy (TMDB, ElevenLabs, Al, transcribe, health) |
+| B — App | Cursor | `app` | `/app/` | Capacitor app (Android + iOS), Editorial Cinema UI |
+| C — Data | Claude Code | `data` | `/data/` | Catalogue JSON + TMDB enrichment pipeline |
+| Ω — Orchestration | Cowork (this session) | `main` | `/orchestration/` | Daily integration, verification, morning reports |
 
-## What this is NOT
+## Branch model
 
-- **NOT** `mychannel-v5.html` — that is the Netflix demo, a separate product, live at `mychannel-app.vercel.app/mychannel-v5.html`. Preserved as-is.
-- **NOT** `C:\dev\mychannel\` — the abandoned second-overnight build. Disk audit 2026-04-16 found its `www/index.html` is v5 with a color swap, `editorial-cinema.css` not linked, `proxy-client.js` not loaded. Not salvageable.
+- `main` — integration target. Only the orchestration session writes here
+  directly (scaffold, README, INTERFACES, morning reports). Feature branches
+  merge in after Al approves.
+- `backend`, `app`, `data` — long-lived feature branches. Each workstream
+  commits and pushes to its own branch. Workstreams do not touch each other's
+  branches.
 
-## Directory layout
+Merges to `main` happen once per day after the orchestration session's morning
+report flags a branch as a merge candidate. **Al approves every merge manually.
+Orchestration does not auto-merge.**
 
+## Shared contracts
+
+All three workstreams consume `/shared/`:
+
+- `/shared/INTERFACES.md` — response shapes, endpoints, error codes, events.
+  Authoritative: when INTERFACES contradicts a workstream prompt, INTERFACES wins.
+- `/shared/types.ts` — canonical TypeScript types, extracted from INTERFACES §2.
+- `/shared/constants.ts` — `API_BASE`, `CATALOGUE_VERSION`, `SCHEMA_VERSION`,
+  `SUPPORTED_REGIONS`.
+
+## Running each locally
+
+### Backend (Workstream A)
+```bash
+cd api/
+npm install
+vercel dev    # serves on http://localhost:3000
 ```
-www/
-  screens/   — visual screens (empty tonight — built in daytime sessions with browser feedback)
-  lib/       — shared DNA modules (state-machine, deep-link, scheduler, tmdb-watch-providers, al, rachel)
-  css/       — editorial-cinema.css lives here
-tests/       — vitest unit tests
-docs/        — design docs
+
+### App (Workstream B)
+```bash
+cd app/
+npm install
+npm run dev        # web preview
+npx cap run android   # Android emulator
+npx cap run ios       # iOS simulator (macOS only)
 ```
+
+### Data (Workstream C)
+```bash
+cd data/
+npm install
+npm run build     # regenerates catalogue.json from TMDB
+```
+
+*Note: the detailed `run` commands above assume the layout described in
+INTERFACES.md. Cross-check `/shared/INTERFACES.md` for authoritative per-
+workstream run instructions.*
+
+## Morning reports
+
+The Cowork orchestration session writes a daily morning report to
+`/orchestration/reports/{YYYY-MM-DD}-morning.md`. Template at
+`/orchestration/morning-report-template.md`. Raw verification output lives
+in `/orchestration/evidence-log.md`.
+
+## Prior work preserved
+
+The 2026-04-17 foundation work (salvaged `www/lib/` modules, 57-test vitest
+suite, `UNIVERSAL-DESIGN.md`, `MORNING-REPORT.md`) is preserved in-tree and in
+git history (commits `2c95e87` → `76921fb`). Workstreams may inherit these
+modules as starting points — see `UNIVERSAL-DESIGN.md` and
+`www/lib/` for the salvaged pieces.
 
 ## Environment variables
 
-| Name | Purpose |
-|---|---|
-| `TMDB_API_KEY` | TMDB Watch Providers + catalogue. Required for `www/lib/tmdb-watch-providers.js`. Never hardcoded. |
+| Name | Purpose | Lives where |
+|---|---|---|
+| `TMDB_API_KEY` | TMDB catalogue + watch providers | Vercel (A) + build script (C) |
+| `ELEVENLABS_API_KEY` | TTS proxy | Vercel (A) only |
+| `ANTHROPIC_API_KEY` | Al concierge (v2) | Vercel (A) only |
+| `UPSTASH_REDIS_REST_URL` / `_TOKEN` | Rate limiting | Vercel (A) only |
 
-Proxy routes (ElevenLabs, Anthropic) live on Vercel with their own env vars — not used by this project directly.
+Never hardcoded. All routed through the Vercel proxy in Workstream A.
 
-## Foundation scope (tonight)
+## Governing guardrails
 
-See `UNIVERSAL-DESIGN.md` for what's decided vs what's pending. Tonight scaffolded: fresh project, lifted salvaged modules, extended deep-link, TMDB wrapper, extracted Al and Rachel pipelines. No visual screens.
+This project runs under the three guardrails in
+`C:\Users\27741\Son-Memory\directives\DIRECTIVE.md`:
+
+1. No unverified factual claims (tool-backed or "I haven't checked").
+2. Autonomous-session verification checklists — claims + per-item evidence.
+3. Scope decisions require Al-quote-back.
+
+The orchestration session enforces these on itself and flags violations in
+workstream reports.
