@@ -1,0 +1,101 @@
+[
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "logo": "assets/streamers/netflix.png",
+    "regions": ["ZA", "US"],
+    "deepLinkSchemes": {
+      "android": "nflx://www.netflix.com/title/",
+      "ios": "nflx://www.netflix.com/title/",
+      "web": "https://www.netflix.com/title/"
+    }
+  },
+  {
+    "id": "disney",
+    "name": "Disney+",
+    "logo": "assets/streamers/disney.png",
+    "regions": ["ZA", "US"],
+    "deepLinkSchemes": {
+      "android": "https://www.disneyplus.com/browse/entity-",
+      "ios": "disneyplus://",
+      "web": "https://www.disneyplus.com/browse/entity-"
+    }
+  },
+  {
+    "id": "prime",
+    "name": "Prime Video",
+    "logo": "assets/streamers/prime.png",
+    "regions": ["ZA", "US"],
+    "deepLinkSchemes": {
+      "android": "https://www.primevideo.com/detail/",
+      "ios": "https://www.primevideo.com/detail/",
+      "web": "https://www.primevideo.com/detail/"
+    }
+  },
+  {
+    "id": "max",
+    "name": "Max",
+    "logo": "assets/streamers/max.png",
+    "regions": ["ZA", "US"],
+    "deepLinkSchemes": {
+      "android": "https://play.max.com/show/",
+      "ios": "https://play.max.com/show/",
+      "web": "https://play.max.com/show/"
+    }
+  },
+  {
+    "id": "appletv",
+    "name": "Apple TV+",
+    "logo": "assets/streamers/appletv.png",
+    "regions": ["ZA", "US"],
+    "deepLinkSchemes": {
+      "android": "https://tv.apple.com/show/",
+      "ios": "videos://tv.apple.com/show/",
+      "web": "https://tv.apple.com/show/"
+    }
+  },
+  {
+    "id": "hulu",
+    "name": "Hulu",
+    "logo": "assets/streamers/hulu.png",
+    "regions": ["US"],
+    "deepLinkSchemes": {
+      "android": "hulu://",
+      "ios": "hulu://",
+      "web": "https://www.hulu.com/series/"
+    }
+  },
+  {
+    "id": "paramount",
+    "name": "Paramount+",
+    "logo": "assets/streamers/paramount.png",
+    "regions": ["US"],
+    "deepLinkSchemes": {
+      "android": "https://www.paramountplus.com/shows/",
+      "ios": "https://www.paramountplus.com/shows/",
+      "web": "https://www.paramountplus.com/shows/"
+    }
+  },
+  {
+    "id": "showmax",
+    "name": "Showmax",
+    "logo": "assets/streamers/showmax.png",
+    "regions": ["ZA"],
+    "deepLinkSchemes": {
+      "android": "https://www.showmax.com/za/search?q=",
+      "ios": "https://www.showmax.com/za/search?q=",
+      "web": "https://www.showmax.com/za/search?q="
+    }
+  },
+  {
+    "id": "youtube",
+    "name": "YouTube",
+    "logo": "assets/streamers/youtube.png",
+    "regions": ["ZA", "US"],
+    "deepLinkSchemes": {
+      "android": "vnd.youtube://results?search_query=",
+      "ios": "youtube://results?search_query=",
+      "web": "https://www.youtube.com/results?search_query="
+    }
+  }
+]
