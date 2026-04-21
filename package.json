@@ -1,0 +1,15 @@
+{
+  "name": "mychannel-universal",
+  "version": "1.0.0",
+  "description": "Universal My-Channel. Cross-streamer personal TV channel app. TV + phone,\r multi-region from v1. Separate product from the v5 Netflix demo\r (`mychannel-v5.html`, preserved live at `mychannel-app.vercel.app/mychannel-v5.html`).\r Do not cross-contaminate.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
