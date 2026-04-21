@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "functions": {
+    "*.ts": {
+      "runtime": "edge"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/health",
+      "dest": "/health.ts"
+    },
+    {
+      "src": "/api/elevenlabs",
+      "dest": "/elevenlabs.ts"
+    },
+    {
+      "src": "/api/al",
+      "dest": "/al.ts"
+    },
+    {
+      "src": "/api/transcribe",
+      "dest": "/transcribe.ts"
+    },
+    {
+      "src": "/api/tmdb/providers/([^/]+)/([^/]+)",
+      "dest": "/tmdb.ts?tmdbType=$1&tmdbId=$2"
+    }
+  ]
+}
