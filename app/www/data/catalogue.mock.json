@@ -1,0 +1,2432 @@
+[
+  {
+    "id": "tmdb-tv-100001",
+    "tmdbId": 100001,
+    "tmdbType": "tv",
+    "title": "Mock Show 1",
+    "year": 2011,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M1",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=1",
+    "genres": [
+      "comedy"
+    ],
+    "runtimeMinutes": 21,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://1",
+        "ios": "nflx://1",
+        "web": "https://www.netflix.com/title/1"
+      },
+      "disney": {
+        "android": "disneyplus://1",
+        "ios": "disneyplus://1",
+        "web": "https://www.disneyplus.com/1"
+      },
+      "prime": {
+        "android": "intent://1",
+        "ios": "aiv://1",
+        "web": "https://www.amazon.com/gp/video/detail/1"
+      },
+      "max": {
+        "android": "hbomax://1",
+        "ios": "hbomax://1",
+        "web": "https://www.max.com/1"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/1",
+        "ios": "com.apple.tv://1",
+        "web": "https://tv.apple.com/1"
+      },
+      "hulu": {
+        "android": "hulu://1",
+        "ios": "hulu://1",
+        "web": "https://www.hulu.com/1"
+      },
+      "paramount": {
+        "android": "pplus://1",
+        "ios": "pplus://1",
+        "web": "https://www.paramountplus.com/1"
+      },
+      "showmax": {
+        "android": "showmax://1",
+        "ios": "showmax://1",
+        "web": "https://www.showmax.com/1"
+      },
+      "youtube": {
+        "android": "vnd.youtube://1",
+        "ios": "vnd.youtube://1",
+        "web": "https://www.youtube.com/watch?v=1"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100002",
+    "tmdbId": 100002,
+    "tmdbType": "tv",
+    "title": "Mock Show 2",
+    "year": 2012,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M2",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=2",
+    "genres": [
+      "crime"
+    ],
+    "runtimeMinutes": 22,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://2",
+        "ios": "nflx://2",
+        "web": "https://www.netflix.com/title/2"
+      },
+      "disney": {
+        "android": "disneyplus://2",
+        "ios": "disneyplus://2",
+        "web": "https://www.disneyplus.com/2"
+      },
+      "prime": {
+        "android": "intent://2",
+        "ios": "aiv://2",
+        "web": "https://www.amazon.com/gp/video/detail/2"
+      },
+      "max": {
+        "android": "hbomax://2",
+        "ios": "hbomax://2",
+        "web": "https://www.max.com/2"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/2",
+        "ios": "com.apple.tv://2",
+        "web": "https://tv.apple.com/2"
+      },
+      "hulu": {
+        "android": "hulu://2",
+        "ios": "hulu://2",
+        "web": "https://www.hulu.com/2"
+      },
+      "paramount": {
+        "android": "pplus://2",
+        "ios": "pplus://2",
+        "web": "https://www.paramountplus.com/2"
+      },
+      "showmax": {
+        "android": "showmax://2",
+        "ios": "showmax://2",
+        "web": "https://www.showmax.com/2"
+      },
+      "youtube": {
+        "android": "vnd.youtube://2",
+        "ios": "vnd.youtube://2",
+        "web": "https://www.youtube.com/watch?v=2"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100003",
+    "tmdbId": 100003,
+    "tmdbType": "tv",
+    "title": "Mock Show 3",
+    "year": 2013,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M3",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=3",
+    "genres": [
+      "scifi"
+    ],
+    "runtimeMinutes": 23,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://3",
+        "ios": "nflx://3",
+        "web": "https://www.netflix.com/title/3"
+      },
+      "disney": {
+        "android": "disneyplus://3",
+        "ios": "disneyplus://3",
+        "web": "https://www.disneyplus.com/3"
+      },
+      "prime": {
+        "android": "intent://3",
+        "ios": "aiv://3",
+        "web": "https://www.amazon.com/gp/video/detail/3"
+      },
+      "max": {
+        "android": "hbomax://3",
+        "ios": "hbomax://3",
+        "web": "https://www.max.com/3"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/3",
+        "ios": "com.apple.tv://3",
+        "web": "https://tv.apple.com/3"
+      },
+      "hulu": {
+        "android": "hulu://3",
+        "ios": "hulu://3",
+        "web": "https://www.hulu.com/3"
+      },
+      "paramount": {
+        "android": "pplus://3",
+        "ios": "pplus://3",
+        "web": "https://www.paramountplus.com/3"
+      },
+      "showmax": {
+        "android": "showmax://3",
+        "ios": "showmax://3",
+        "web": "https://www.showmax.com/3"
+      },
+      "youtube": {
+        "android": "vnd.youtube://3",
+        "ios": "vnd.youtube://3",
+        "web": "https://www.youtube.com/watch?v=3"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100004",
+    "tmdbId": 100004,
+    "tmdbType": "tv",
+    "title": "Mock Show 4",
+    "year": 2014,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M4",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=4",
+    "genres": [
+      "fantasy"
+    ],
+    "runtimeMinutes": 24,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://4",
+        "ios": "nflx://4",
+        "web": "https://www.netflix.com/title/4"
+      },
+      "disney": {
+        "android": "disneyplus://4",
+        "ios": "disneyplus://4",
+        "web": "https://www.disneyplus.com/4"
+      },
+      "prime": {
+        "android": "intent://4",
+        "ios": "aiv://4",
+        "web": "https://www.amazon.com/gp/video/detail/4"
+      },
+      "max": {
+        "android": "hbomax://4",
+        "ios": "hbomax://4",
+        "web": "https://www.max.com/4"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/4",
+        "ios": "com.apple.tv://4",
+        "web": "https://tv.apple.com/4"
+      },
+      "hulu": {
+        "android": "hulu://4",
+        "ios": "hulu://4",
+        "web": "https://www.hulu.com/4"
+      },
+      "paramount": {
+        "android": "pplus://4",
+        "ios": "pplus://4",
+        "web": "https://www.paramountplus.com/4"
+      },
+      "showmax": {
+        "android": "showmax://4",
+        "ios": "showmax://4",
+        "web": "https://www.showmax.com/4"
+      },
+      "youtube": {
+        "android": "vnd.youtube://4",
+        "ios": "vnd.youtube://4",
+        "web": "https://www.youtube.com/watch?v=4"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100005",
+    "tmdbId": 100005,
+    "tmdbType": "tv",
+    "title": "Mock Show 5",
+    "year": 2015,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M5",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=5",
+    "genres": [
+      "thriller"
+    ],
+    "runtimeMinutes": 25,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://5",
+        "ios": "nflx://5",
+        "web": "https://www.netflix.com/title/5"
+      },
+      "disney": {
+        "android": "disneyplus://5",
+        "ios": "disneyplus://5",
+        "web": "https://www.disneyplus.com/5"
+      },
+      "prime": {
+        "android": "intent://5",
+        "ios": "aiv://5",
+        "web": "https://www.amazon.com/gp/video/detail/5"
+      },
+      "max": {
+        "android": "hbomax://5",
+        "ios": "hbomax://5",
+        "web": "https://www.max.com/5"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/5",
+        "ios": "com.apple.tv://5",
+        "web": "https://tv.apple.com/5"
+      },
+      "hulu": {
+        "android": "hulu://5",
+        "ios": "hulu://5",
+        "web": "https://www.hulu.com/5"
+      },
+      "paramount": {
+        "android": "pplus://5",
+        "ios": "pplus://5",
+        "web": "https://www.paramountplus.com/5"
+      },
+      "showmax": {
+        "android": "showmax://5",
+        "ios": "showmax://5",
+        "web": "https://www.showmax.com/5"
+      },
+      "youtube": {
+        "android": "vnd.youtube://5",
+        "ios": "vnd.youtube://5",
+        "web": "https://www.youtube.com/watch?v=5"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100006",
+    "tmdbId": 100006,
+    "tmdbType": "tv",
+    "title": "Mock Show 6",
+    "year": 2016,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M6",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=6",
+    "genres": [
+      "action"
+    ],
+    "runtimeMinutes": 26,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://6",
+        "ios": "nflx://6",
+        "web": "https://www.netflix.com/title/6"
+      },
+      "disney": {
+        "android": "disneyplus://6",
+        "ios": "disneyplus://6",
+        "web": "https://www.disneyplus.com/6"
+      },
+      "prime": {
+        "android": "intent://6",
+        "ios": "aiv://6",
+        "web": "https://www.amazon.com/gp/video/detail/6"
+      },
+      "max": {
+        "android": "hbomax://6",
+        "ios": "hbomax://6",
+        "web": "https://www.max.com/6"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/6",
+        "ios": "com.apple.tv://6",
+        "web": "https://tv.apple.com/6"
+      },
+      "hulu": {
+        "android": "hulu://6",
+        "ios": "hulu://6",
+        "web": "https://www.hulu.com/6"
+      },
+      "paramount": {
+        "android": "pplus://6",
+        "ios": "pplus://6",
+        "web": "https://www.paramountplus.com/6"
+      },
+      "showmax": {
+        "android": "showmax://6",
+        "ios": "showmax://6",
+        "web": "https://www.showmax.com/6"
+      },
+      "youtube": {
+        "android": "vnd.youtube://6",
+        "ios": "vnd.youtube://6",
+        "web": "https://www.youtube.com/watch?v=6"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100007",
+    "tmdbId": 100007,
+    "tmdbType": "tv",
+    "title": "Mock Show 7",
+    "year": 2017,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M7",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=7",
+    "genres": [
+      "romance"
+    ],
+    "runtimeMinutes": 27,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://7",
+        "ios": "nflx://7",
+        "web": "https://www.netflix.com/title/7"
+      },
+      "disney": {
+        "android": "disneyplus://7",
+        "ios": "disneyplus://7",
+        "web": "https://www.disneyplus.com/7"
+      },
+      "prime": {
+        "android": "intent://7",
+        "ios": "aiv://7",
+        "web": "https://www.amazon.com/gp/video/detail/7"
+      },
+      "max": {
+        "android": "hbomax://7",
+        "ios": "hbomax://7",
+        "web": "https://www.max.com/7"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/7",
+        "ios": "com.apple.tv://7",
+        "web": "https://tv.apple.com/7"
+      },
+      "hulu": {
+        "android": "hulu://7",
+        "ios": "hulu://7",
+        "web": "https://www.hulu.com/7"
+      },
+      "paramount": {
+        "android": "pplus://7",
+        "ios": "pplus://7",
+        "web": "https://www.paramountplus.com/7"
+      },
+      "showmax": {
+        "android": "showmax://7",
+        "ios": "showmax://7",
+        "web": "https://www.showmax.com/7"
+      },
+      "youtube": {
+        "android": "vnd.youtube://7",
+        "ios": "vnd.youtube://7",
+        "web": "https://www.youtube.com/watch?v=7"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100008",
+    "tmdbId": 100008,
+    "tmdbType": "tv",
+    "title": "Mock Show 8",
+    "year": 2018,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M8",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=8",
+    "genres": [
+      "documentary"
+    ],
+    "runtimeMinutes": 28,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://8",
+        "ios": "nflx://8",
+        "web": "https://www.netflix.com/title/8"
+      },
+      "disney": {
+        "android": "disneyplus://8",
+        "ios": "disneyplus://8",
+        "web": "https://www.disneyplus.com/8"
+      },
+      "prime": {
+        "android": "intent://8",
+        "ios": "aiv://8",
+        "web": "https://www.amazon.com/gp/video/detail/8"
+      },
+      "max": {
+        "android": "hbomax://8",
+        "ios": "hbomax://8",
+        "web": "https://www.max.com/8"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/8",
+        "ios": "com.apple.tv://8",
+        "web": "https://tv.apple.com/8"
+      },
+      "hulu": {
+        "android": "hulu://8",
+        "ios": "hulu://8",
+        "web": "https://www.hulu.com/8"
+      },
+      "paramount": {
+        "android": "pplus://8",
+        "ios": "pplus://8",
+        "web": "https://www.paramountplus.com/8"
+      },
+      "showmax": {
+        "android": "showmax://8",
+        "ios": "showmax://8",
+        "web": "https://www.showmax.com/8"
+      },
+      "youtube": {
+        "android": "vnd.youtube://8",
+        "ios": "vnd.youtube://8",
+        "web": "https://www.youtube.com/watch?v=8"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100009",
+    "tmdbId": 100009,
+    "tmdbType": "tv",
+    "title": "Mock Show 9",
+    "year": 2019,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M9",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=9",
+    "genres": [
+      "animation"
+    ],
+    "runtimeMinutes": 29,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://9",
+        "ios": "nflx://9",
+        "web": "https://www.netflix.com/title/9"
+      },
+      "disney": {
+        "android": "disneyplus://9",
+        "ios": "disneyplus://9",
+        "web": "https://www.disneyplus.com/9"
+      },
+      "prime": {
+        "android": "intent://9",
+        "ios": "aiv://9",
+        "web": "https://www.amazon.com/gp/video/detail/9"
+      },
+      "max": {
+        "android": "hbomax://9",
+        "ios": "hbomax://9",
+        "web": "https://www.max.com/9"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/9",
+        "ios": "com.apple.tv://9",
+        "web": "https://tv.apple.com/9"
+      },
+      "hulu": {
+        "android": "hulu://9",
+        "ios": "hulu://9",
+        "web": "https://www.hulu.com/9"
+      },
+      "paramount": {
+        "android": "pplus://9",
+        "ios": "pplus://9",
+        "web": "https://www.paramountplus.com/9"
+      },
+      "showmax": {
+        "android": "showmax://9",
+        "ios": "showmax://9",
+        "web": "https://www.showmax.com/9"
+      },
+      "youtube": {
+        "android": "vnd.youtube://9",
+        "ios": "vnd.youtube://9",
+        "web": "https://www.youtube.com/watch?v=9"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100010",
+    "tmdbId": 100010,
+    "tmdbType": "tv",
+    "title": "Mock Show 10",
+    "year": 2020,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M10",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=10",
+    "genres": [
+      "horror"
+    ],
+    "runtimeMinutes": 30,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://10",
+        "ios": "nflx://10",
+        "web": "https://www.netflix.com/title/10"
+      },
+      "disney": {
+        "android": "disneyplus://10",
+        "ios": "disneyplus://10",
+        "web": "https://www.disneyplus.com/10"
+      },
+      "prime": {
+        "android": "intent://10",
+        "ios": "aiv://10",
+        "web": "https://www.amazon.com/gp/video/detail/10"
+      },
+      "max": {
+        "android": "hbomax://10",
+        "ios": "hbomax://10",
+        "web": "https://www.max.com/10"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/10",
+        "ios": "com.apple.tv://10",
+        "web": "https://tv.apple.com/10"
+      },
+      "hulu": {
+        "android": "hulu://10",
+        "ios": "hulu://10",
+        "web": "https://www.hulu.com/10"
+      },
+      "paramount": {
+        "android": "pplus://10",
+        "ios": "pplus://10",
+        "web": "https://www.paramountplus.com/10"
+      },
+      "showmax": {
+        "android": "showmax://10",
+        "ios": "showmax://10",
+        "web": "https://www.showmax.com/10"
+      },
+      "youtube": {
+        "android": "vnd.youtube://10",
+        "ios": "vnd.youtube://10",
+        "web": "https://www.youtube.com/watch?v=10"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100011",
+    "tmdbId": 100011,
+    "tmdbType": "tv",
+    "title": "Mock Show 11",
+    "year": 2021,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M11",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=11",
+    "genres": [
+      "reality"
+    ],
+    "runtimeMinutes": 31,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://11",
+        "ios": "nflx://11",
+        "web": "https://www.netflix.com/title/11"
+      },
+      "disney": {
+        "android": "disneyplus://11",
+        "ios": "disneyplus://11",
+        "web": "https://www.disneyplus.com/11"
+      },
+      "prime": {
+        "android": "intent://11",
+        "ios": "aiv://11",
+        "web": "https://www.amazon.com/gp/video/detail/11"
+      },
+      "max": {
+        "android": "hbomax://11",
+        "ios": "hbomax://11",
+        "web": "https://www.max.com/11"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/11",
+        "ios": "com.apple.tv://11",
+        "web": "https://tv.apple.com/11"
+      },
+      "hulu": {
+        "android": "hulu://11",
+        "ios": "hulu://11",
+        "web": "https://www.hulu.com/11"
+      },
+      "paramount": {
+        "android": "pplus://11",
+        "ios": "pplus://11",
+        "web": "https://www.paramountplus.com/11"
+      },
+      "showmax": {
+        "android": "showmax://11",
+        "ios": "showmax://11",
+        "web": "https://www.showmax.com/11"
+      },
+      "youtube": {
+        "android": "vnd.youtube://11",
+        "ios": "vnd.youtube://11",
+        "web": "https://www.youtube.com/watch?v=11"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100012",
+    "tmdbId": 100012,
+    "tmdbType": "tv",
+    "title": "Mock Show 12",
+    "year": 2022,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M12",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=12",
+    "genres": [
+      "drama"
+    ],
+    "runtimeMinutes": 32,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://12",
+        "ios": "nflx://12",
+        "web": "https://www.netflix.com/title/12"
+      },
+      "disney": {
+        "android": "disneyplus://12",
+        "ios": "disneyplus://12",
+        "web": "https://www.disneyplus.com/12"
+      },
+      "prime": {
+        "android": "intent://12",
+        "ios": "aiv://12",
+        "web": "https://www.amazon.com/gp/video/detail/12"
+      },
+      "max": {
+        "android": "hbomax://12",
+        "ios": "hbomax://12",
+        "web": "https://www.max.com/12"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/12",
+        "ios": "com.apple.tv://12",
+        "web": "https://tv.apple.com/12"
+      },
+      "hulu": {
+        "android": "hulu://12",
+        "ios": "hulu://12",
+        "web": "https://www.hulu.com/12"
+      },
+      "paramount": {
+        "android": "pplus://12",
+        "ios": "pplus://12",
+        "web": "https://www.paramountplus.com/12"
+      },
+      "showmax": {
+        "android": "showmax://12",
+        "ios": "showmax://12",
+        "web": "https://www.showmax.com/12"
+      },
+      "youtube": {
+        "android": "vnd.youtube://12",
+        "ios": "vnd.youtube://12",
+        "web": "https://www.youtube.com/watch?v=12"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100013",
+    "tmdbId": 100013,
+    "tmdbType": "tv",
+    "title": "Mock Show 13",
+    "year": 2023,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M13",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=13",
+    "genres": [
+      "comedy"
+    ],
+    "runtimeMinutes": 33,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://13",
+        "ios": "nflx://13",
+        "web": "https://www.netflix.com/title/13"
+      },
+      "disney": {
+        "android": "disneyplus://13",
+        "ios": "disneyplus://13",
+        "web": "https://www.disneyplus.com/13"
+      },
+      "prime": {
+        "android": "intent://13",
+        "ios": "aiv://13",
+        "web": "https://www.amazon.com/gp/video/detail/13"
+      },
+      "max": {
+        "android": "hbomax://13",
+        "ios": "hbomax://13",
+        "web": "https://www.max.com/13"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/13",
+        "ios": "com.apple.tv://13",
+        "web": "https://tv.apple.com/13"
+      },
+      "hulu": {
+        "android": "hulu://13",
+        "ios": "hulu://13",
+        "web": "https://www.hulu.com/13"
+      },
+      "paramount": {
+        "android": "pplus://13",
+        "ios": "pplus://13",
+        "web": "https://www.paramountplus.com/13"
+      },
+      "showmax": {
+        "android": "showmax://13",
+        "ios": "showmax://13",
+        "web": "https://www.showmax.com/13"
+      },
+      "youtube": {
+        "android": "vnd.youtube://13",
+        "ios": "vnd.youtube://13",
+        "web": "https://www.youtube.com/watch?v=13"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100014",
+    "tmdbId": 100014,
+    "tmdbType": "tv",
+    "title": "Mock Show 14",
+    "year": 2024,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M14",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=14",
+    "genres": [
+      "crime"
+    ],
+    "runtimeMinutes": 34,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://14",
+        "ios": "nflx://14",
+        "web": "https://www.netflix.com/title/14"
+      },
+      "disney": {
+        "android": "disneyplus://14",
+        "ios": "disneyplus://14",
+        "web": "https://www.disneyplus.com/14"
+      },
+      "prime": {
+        "android": "intent://14",
+        "ios": "aiv://14",
+        "web": "https://www.amazon.com/gp/video/detail/14"
+      },
+      "max": {
+        "android": "hbomax://14",
+        "ios": "hbomax://14",
+        "web": "https://www.max.com/14"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/14",
+        "ios": "com.apple.tv://14",
+        "web": "https://tv.apple.com/14"
+      },
+      "hulu": {
+        "android": "hulu://14",
+        "ios": "hulu://14",
+        "web": "https://www.hulu.com/14"
+      },
+      "paramount": {
+        "android": "pplus://14",
+        "ios": "pplus://14",
+        "web": "https://www.paramountplus.com/14"
+      },
+      "showmax": {
+        "android": "showmax://14",
+        "ios": "showmax://14",
+        "web": "https://www.showmax.com/14"
+      },
+      "youtube": {
+        "android": "vnd.youtube://14",
+        "ios": "vnd.youtube://14",
+        "web": "https://www.youtube.com/watch?v=14"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100015",
+    "tmdbId": 100015,
+    "tmdbType": "tv",
+    "title": "Mock Show 15",
+    "year": 2010,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M15",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=15",
+    "genres": [
+      "scifi"
+    ],
+    "runtimeMinutes": 35,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://15",
+        "ios": "nflx://15",
+        "web": "https://www.netflix.com/title/15"
+      },
+      "disney": {
+        "android": "disneyplus://15",
+        "ios": "disneyplus://15",
+        "web": "https://www.disneyplus.com/15"
+      },
+      "prime": {
+        "android": "intent://15",
+        "ios": "aiv://15",
+        "web": "https://www.amazon.com/gp/video/detail/15"
+      },
+      "max": {
+        "android": "hbomax://15",
+        "ios": "hbomax://15",
+        "web": "https://www.max.com/15"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/15",
+        "ios": "com.apple.tv://15",
+        "web": "https://tv.apple.com/15"
+      },
+      "hulu": {
+        "android": "hulu://15",
+        "ios": "hulu://15",
+        "web": "https://www.hulu.com/15"
+      },
+      "paramount": {
+        "android": "pplus://15",
+        "ios": "pplus://15",
+        "web": "https://www.paramountplus.com/15"
+      },
+      "showmax": {
+        "android": "showmax://15",
+        "ios": "showmax://15",
+        "web": "https://www.showmax.com/15"
+      },
+      "youtube": {
+        "android": "vnd.youtube://15",
+        "ios": "vnd.youtube://15",
+        "web": "https://www.youtube.com/watch?v=15"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100016",
+    "tmdbId": 100016,
+    "tmdbType": "tv",
+    "title": "Mock Show 16",
+    "year": 2011,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M16",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=16",
+    "genres": [
+      "fantasy"
+    ],
+    "runtimeMinutes": 36,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://16",
+        "ios": "nflx://16",
+        "web": "https://www.netflix.com/title/16"
+      },
+      "disney": {
+        "android": "disneyplus://16",
+        "ios": "disneyplus://16",
+        "web": "https://www.disneyplus.com/16"
+      },
+      "prime": {
+        "android": "intent://16",
+        "ios": "aiv://16",
+        "web": "https://www.amazon.com/gp/video/detail/16"
+      },
+      "max": {
+        "android": "hbomax://16",
+        "ios": "hbomax://16",
+        "web": "https://www.max.com/16"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/16",
+        "ios": "com.apple.tv://16",
+        "web": "https://tv.apple.com/16"
+      },
+      "hulu": {
+        "android": "hulu://16",
+        "ios": "hulu://16",
+        "web": "https://www.hulu.com/16"
+      },
+      "paramount": {
+        "android": "pplus://16",
+        "ios": "pplus://16",
+        "web": "https://www.paramountplus.com/16"
+      },
+      "showmax": {
+        "android": "showmax://16",
+        "ios": "showmax://16",
+        "web": "https://www.showmax.com/16"
+      },
+      "youtube": {
+        "android": "vnd.youtube://16",
+        "ios": "vnd.youtube://16",
+        "web": "https://www.youtube.com/watch?v=16"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100017",
+    "tmdbId": 100017,
+    "tmdbType": "tv",
+    "title": "Mock Show 17",
+    "year": 2012,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M17",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=17",
+    "genres": [
+      "thriller"
+    ],
+    "runtimeMinutes": 37,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://17",
+        "ios": "nflx://17",
+        "web": "https://www.netflix.com/title/17"
+      },
+      "disney": {
+        "android": "disneyplus://17",
+        "ios": "disneyplus://17",
+        "web": "https://www.disneyplus.com/17"
+      },
+      "prime": {
+        "android": "intent://17",
+        "ios": "aiv://17",
+        "web": "https://www.amazon.com/gp/video/detail/17"
+      },
+      "max": {
+        "android": "hbomax://17",
+        "ios": "hbomax://17",
+        "web": "https://www.max.com/17"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/17",
+        "ios": "com.apple.tv://17",
+        "web": "https://tv.apple.com/17"
+      },
+      "hulu": {
+        "android": "hulu://17",
+        "ios": "hulu://17",
+        "web": "https://www.hulu.com/17"
+      },
+      "paramount": {
+        "android": "pplus://17",
+        "ios": "pplus://17",
+        "web": "https://www.paramountplus.com/17"
+      },
+      "showmax": {
+        "android": "showmax://17",
+        "ios": "showmax://17",
+        "web": "https://www.showmax.com/17"
+      },
+      "youtube": {
+        "android": "vnd.youtube://17",
+        "ios": "vnd.youtube://17",
+        "web": "https://www.youtube.com/watch?v=17"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100018",
+    "tmdbId": 100018,
+    "tmdbType": "tv",
+    "title": "Mock Show 18",
+    "year": 2013,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M18",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=18",
+    "genres": [
+      "action"
+    ],
+    "runtimeMinutes": 38,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://18",
+        "ios": "nflx://18",
+        "web": "https://www.netflix.com/title/18"
+      },
+      "disney": {
+        "android": "disneyplus://18",
+        "ios": "disneyplus://18",
+        "web": "https://www.disneyplus.com/18"
+      },
+      "prime": {
+        "android": "intent://18",
+        "ios": "aiv://18",
+        "web": "https://www.amazon.com/gp/video/detail/18"
+      },
+      "max": {
+        "android": "hbomax://18",
+        "ios": "hbomax://18",
+        "web": "https://www.max.com/18"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/18",
+        "ios": "com.apple.tv://18",
+        "web": "https://tv.apple.com/18"
+      },
+      "hulu": {
+        "android": "hulu://18",
+        "ios": "hulu://18",
+        "web": "https://www.hulu.com/18"
+      },
+      "paramount": {
+        "android": "pplus://18",
+        "ios": "pplus://18",
+        "web": "https://www.paramountplus.com/18"
+      },
+      "showmax": {
+        "android": "showmax://18",
+        "ios": "showmax://18",
+        "web": "https://www.showmax.com/18"
+      },
+      "youtube": {
+        "android": "vnd.youtube://18",
+        "ios": "vnd.youtube://18",
+        "web": "https://www.youtube.com/watch?v=18"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100019",
+    "tmdbId": 100019,
+    "tmdbType": "tv",
+    "title": "Mock Show 19",
+    "year": 2014,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M19",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=19",
+    "genres": [
+      "romance"
+    ],
+    "runtimeMinutes": 39,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://19",
+        "ios": "nflx://19",
+        "web": "https://www.netflix.com/title/19"
+      },
+      "disney": {
+        "android": "disneyplus://19",
+        "ios": "disneyplus://19",
+        "web": "https://www.disneyplus.com/19"
+      },
+      "prime": {
+        "android": "intent://19",
+        "ios": "aiv://19",
+        "web": "https://www.amazon.com/gp/video/detail/19"
+      },
+      "max": {
+        "android": "hbomax://19",
+        "ios": "hbomax://19",
+        "web": "https://www.max.com/19"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/19",
+        "ios": "com.apple.tv://19",
+        "web": "https://tv.apple.com/19"
+      },
+      "hulu": {
+        "android": "hulu://19",
+        "ios": "hulu://19",
+        "web": "https://www.hulu.com/19"
+      },
+      "paramount": {
+        "android": "pplus://19",
+        "ios": "pplus://19",
+        "web": "https://www.paramountplus.com/19"
+      },
+      "showmax": {
+        "android": "showmax://19",
+        "ios": "showmax://19",
+        "web": "https://www.showmax.com/19"
+      },
+      "youtube": {
+        "android": "vnd.youtube://19",
+        "ios": "vnd.youtube://19",
+        "web": "https://www.youtube.com/watch?v=19"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100020",
+    "tmdbId": 100020,
+    "tmdbType": "tv",
+    "title": "Mock Show 20",
+    "year": 2015,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M20",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=20",
+    "genres": [
+      "documentary"
+    ],
+    "runtimeMinutes": 40,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://20",
+        "ios": "nflx://20",
+        "web": "https://www.netflix.com/title/20"
+      },
+      "disney": {
+        "android": "disneyplus://20",
+        "ios": "disneyplus://20",
+        "web": "https://www.disneyplus.com/20"
+      },
+      "prime": {
+        "android": "intent://20",
+        "ios": "aiv://20",
+        "web": "https://www.amazon.com/gp/video/detail/20"
+      },
+      "max": {
+        "android": "hbomax://20",
+        "ios": "hbomax://20",
+        "web": "https://www.max.com/20"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/20",
+        "ios": "com.apple.tv://20",
+        "web": "https://tv.apple.com/20"
+      },
+      "hulu": {
+        "android": "hulu://20",
+        "ios": "hulu://20",
+        "web": "https://www.hulu.com/20"
+      },
+      "paramount": {
+        "android": "pplus://20",
+        "ios": "pplus://20",
+        "web": "https://www.paramountplus.com/20"
+      },
+      "showmax": {
+        "android": "showmax://20",
+        "ios": "showmax://20",
+        "web": "https://www.showmax.com/20"
+      },
+      "youtube": {
+        "android": "vnd.youtube://20",
+        "ios": "vnd.youtube://20",
+        "web": "https://www.youtube.com/watch?v=20"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100021",
+    "tmdbId": 100021,
+    "tmdbType": "tv",
+    "title": "Mock Show 21",
+    "year": 2016,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M21",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=21",
+    "genres": [
+      "animation"
+    ],
+    "runtimeMinutes": 41,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://21",
+        "ios": "nflx://21",
+        "web": "https://www.netflix.com/title/21"
+      },
+      "disney": {
+        "android": "disneyplus://21",
+        "ios": "disneyplus://21",
+        "web": "https://www.disneyplus.com/21"
+      },
+      "prime": {
+        "android": "intent://21",
+        "ios": "aiv://21",
+        "web": "https://www.amazon.com/gp/video/detail/21"
+      },
+      "max": {
+        "android": "hbomax://21",
+        "ios": "hbomax://21",
+        "web": "https://www.max.com/21"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/21",
+        "ios": "com.apple.tv://21",
+        "web": "https://tv.apple.com/21"
+      },
+      "hulu": {
+        "android": "hulu://21",
+        "ios": "hulu://21",
+        "web": "https://www.hulu.com/21"
+      },
+      "paramount": {
+        "android": "pplus://21",
+        "ios": "pplus://21",
+        "web": "https://www.paramountplus.com/21"
+      },
+      "showmax": {
+        "android": "showmax://21",
+        "ios": "showmax://21",
+        "web": "https://www.showmax.com/21"
+      },
+      "youtube": {
+        "android": "vnd.youtube://21",
+        "ios": "vnd.youtube://21",
+        "web": "https://www.youtube.com/watch?v=21"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100022",
+    "tmdbId": 100022,
+    "tmdbType": "tv",
+    "title": "Mock Show 22",
+    "year": 2017,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M22",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=22",
+    "genres": [
+      "horror"
+    ],
+    "runtimeMinutes": 42,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://22",
+        "ios": "nflx://22",
+        "web": "https://www.netflix.com/title/22"
+      },
+      "disney": {
+        "android": "disneyplus://22",
+        "ios": "disneyplus://22",
+        "web": "https://www.disneyplus.com/22"
+      },
+      "prime": {
+        "android": "intent://22",
+        "ios": "aiv://22",
+        "web": "https://www.amazon.com/gp/video/detail/22"
+      },
+      "max": {
+        "android": "hbomax://22",
+        "ios": "hbomax://22",
+        "web": "https://www.max.com/22"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/22",
+        "ios": "com.apple.tv://22",
+        "web": "https://tv.apple.com/22"
+      },
+      "hulu": {
+        "android": "hulu://22",
+        "ios": "hulu://22",
+        "web": "https://www.hulu.com/22"
+      },
+      "paramount": {
+        "android": "pplus://22",
+        "ios": "pplus://22",
+        "web": "https://www.paramountplus.com/22"
+      },
+      "showmax": {
+        "android": "showmax://22",
+        "ios": "showmax://22",
+        "web": "https://www.showmax.com/22"
+      },
+      "youtube": {
+        "android": "vnd.youtube://22",
+        "ios": "vnd.youtube://22",
+        "web": "https://www.youtube.com/watch?v=22"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100023",
+    "tmdbId": 100023,
+    "tmdbType": "tv",
+    "title": "Mock Show 23",
+    "year": 2018,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M23",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=23",
+    "genres": [
+      "reality"
+    ],
+    "runtimeMinutes": 43,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://23",
+        "ios": "nflx://23",
+        "web": "https://www.netflix.com/title/23"
+      },
+      "disney": {
+        "android": "disneyplus://23",
+        "ios": "disneyplus://23",
+        "web": "https://www.disneyplus.com/23"
+      },
+      "prime": {
+        "android": "intent://23",
+        "ios": "aiv://23",
+        "web": "https://www.amazon.com/gp/video/detail/23"
+      },
+      "max": {
+        "android": "hbomax://23",
+        "ios": "hbomax://23",
+        "web": "https://www.max.com/23"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/23",
+        "ios": "com.apple.tv://23",
+        "web": "https://tv.apple.com/23"
+      },
+      "hulu": {
+        "android": "hulu://23",
+        "ios": "hulu://23",
+        "web": "https://www.hulu.com/23"
+      },
+      "paramount": {
+        "android": "pplus://23",
+        "ios": "pplus://23",
+        "web": "https://www.paramountplus.com/23"
+      },
+      "showmax": {
+        "android": "showmax://23",
+        "ios": "showmax://23",
+        "web": "https://www.showmax.com/23"
+      },
+      "youtube": {
+        "android": "vnd.youtube://23",
+        "ios": "vnd.youtube://23",
+        "web": "https://www.youtube.com/watch?v=23"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100024",
+    "tmdbId": 100024,
+    "tmdbType": "tv",
+    "title": "Mock Show 24",
+    "year": 2019,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M24",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=24",
+    "genres": [
+      "drama"
+    ],
+    "runtimeMinutes": 44,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://24",
+        "ios": "nflx://24",
+        "web": "https://www.netflix.com/title/24"
+      },
+      "disney": {
+        "android": "disneyplus://24",
+        "ios": "disneyplus://24",
+        "web": "https://www.disneyplus.com/24"
+      },
+      "prime": {
+        "android": "intent://24",
+        "ios": "aiv://24",
+        "web": "https://www.amazon.com/gp/video/detail/24"
+      },
+      "max": {
+        "android": "hbomax://24",
+        "ios": "hbomax://24",
+        "web": "https://www.max.com/24"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/24",
+        "ios": "com.apple.tv://24",
+        "web": "https://tv.apple.com/24"
+      },
+      "hulu": {
+        "android": "hulu://24",
+        "ios": "hulu://24",
+        "web": "https://www.hulu.com/24"
+      },
+      "paramount": {
+        "android": "pplus://24",
+        "ios": "pplus://24",
+        "web": "https://www.paramountplus.com/24"
+      },
+      "showmax": {
+        "android": "showmax://24",
+        "ios": "showmax://24",
+        "web": "https://www.showmax.com/24"
+      },
+      "youtube": {
+        "android": "vnd.youtube://24",
+        "ios": "vnd.youtube://24",
+        "web": "https://www.youtube.com/watch?v=24"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100025",
+    "tmdbId": 100025,
+    "tmdbType": "tv",
+    "title": "Mock Show 25",
+    "year": 2020,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M25",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=25",
+    "genres": [
+      "comedy"
+    ],
+    "runtimeMinutes": 45,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://25",
+        "ios": "nflx://25",
+        "web": "https://www.netflix.com/title/25"
+      },
+      "disney": {
+        "android": "disneyplus://25",
+        "ios": "disneyplus://25",
+        "web": "https://www.disneyplus.com/25"
+      },
+      "prime": {
+        "android": "intent://25",
+        "ios": "aiv://25",
+        "web": "https://www.amazon.com/gp/video/detail/25"
+      },
+      "max": {
+        "android": "hbomax://25",
+        "ios": "hbomax://25",
+        "web": "https://www.max.com/25"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/25",
+        "ios": "com.apple.tv://25",
+        "web": "https://tv.apple.com/25"
+      },
+      "hulu": {
+        "android": "hulu://25",
+        "ios": "hulu://25",
+        "web": "https://www.hulu.com/25"
+      },
+      "paramount": {
+        "android": "pplus://25",
+        "ios": "pplus://25",
+        "web": "https://www.paramountplus.com/25"
+      },
+      "showmax": {
+        "android": "showmax://25",
+        "ios": "showmax://25",
+        "web": "https://www.showmax.com/25"
+      },
+      "youtube": {
+        "android": "vnd.youtube://25",
+        "ios": "vnd.youtube://25",
+        "web": "https://www.youtube.com/watch?v=25"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100026",
+    "tmdbId": 100026,
+    "tmdbType": "tv",
+    "title": "Mock Show 26",
+    "year": 2021,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M26",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=26",
+    "genres": [
+      "crime"
+    ],
+    "runtimeMinutes": 46,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://26",
+        "ios": "nflx://26",
+        "web": "https://www.netflix.com/title/26"
+      },
+      "disney": {
+        "android": "disneyplus://26",
+        "ios": "disneyplus://26",
+        "web": "https://www.disneyplus.com/26"
+      },
+      "prime": {
+        "android": "intent://26",
+        "ios": "aiv://26",
+        "web": "https://www.amazon.com/gp/video/detail/26"
+      },
+      "max": {
+        "android": "hbomax://26",
+        "ios": "hbomax://26",
+        "web": "https://www.max.com/26"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/26",
+        "ios": "com.apple.tv://26",
+        "web": "https://tv.apple.com/26"
+      },
+      "hulu": {
+        "android": "hulu://26",
+        "ios": "hulu://26",
+        "web": "https://www.hulu.com/26"
+      },
+      "paramount": {
+        "android": "pplus://26",
+        "ios": "pplus://26",
+        "web": "https://www.paramountplus.com/26"
+      },
+      "showmax": {
+        "android": "showmax://26",
+        "ios": "showmax://26",
+        "web": "https://www.showmax.com/26"
+      },
+      "youtube": {
+        "android": "vnd.youtube://26",
+        "ios": "vnd.youtube://26",
+        "web": "https://www.youtube.com/watch?v=26"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100027",
+    "tmdbId": 100027,
+    "tmdbType": "tv",
+    "title": "Mock Show 27",
+    "year": 2022,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M27",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=27",
+    "genres": [
+      "scifi"
+    ],
+    "runtimeMinutes": 47,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://27",
+        "ios": "nflx://27",
+        "web": "https://www.netflix.com/title/27"
+      },
+      "disney": {
+        "android": "disneyplus://27",
+        "ios": "disneyplus://27",
+        "web": "https://www.disneyplus.com/27"
+      },
+      "prime": {
+        "android": "intent://27",
+        "ios": "aiv://27",
+        "web": "https://www.amazon.com/gp/video/detail/27"
+      },
+      "max": {
+        "android": "hbomax://27",
+        "ios": "hbomax://27",
+        "web": "https://www.max.com/27"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/27",
+        "ios": "com.apple.tv://27",
+        "web": "https://tv.apple.com/27"
+      },
+      "hulu": {
+        "android": "hulu://27",
+        "ios": "hulu://27",
+        "web": "https://www.hulu.com/27"
+      },
+      "paramount": {
+        "android": "pplus://27",
+        "ios": "pplus://27",
+        "web": "https://www.paramountplus.com/27"
+      },
+      "showmax": {
+        "android": "showmax://27",
+        "ios": "showmax://27",
+        "web": "https://www.showmax.com/27"
+      },
+      "youtube": {
+        "android": "vnd.youtube://27",
+        "ios": "vnd.youtube://27",
+        "web": "https://www.youtube.com/watch?v=27"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100028",
+    "tmdbId": 100028,
+    "tmdbType": "tv",
+    "title": "Mock Show 28",
+    "year": 2023,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M28",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=28",
+    "genres": [
+      "fantasy"
+    ],
+    "runtimeMinutes": 48,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://28",
+        "ios": "nflx://28",
+        "web": "https://www.netflix.com/title/28"
+      },
+      "disney": {
+        "android": "disneyplus://28",
+        "ios": "disneyplus://28",
+        "web": "https://www.disneyplus.com/28"
+      },
+      "prime": {
+        "android": "intent://28",
+        "ios": "aiv://28",
+        "web": "https://www.amazon.com/gp/video/detail/28"
+      },
+      "max": {
+        "android": "hbomax://28",
+        "ios": "hbomax://28",
+        "web": "https://www.max.com/28"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/28",
+        "ios": "com.apple.tv://28",
+        "web": "https://tv.apple.com/28"
+      },
+      "hulu": {
+        "android": "hulu://28",
+        "ios": "hulu://28",
+        "web": "https://www.hulu.com/28"
+      },
+      "paramount": {
+        "android": "pplus://28",
+        "ios": "pplus://28",
+        "web": "https://www.paramountplus.com/28"
+      },
+      "showmax": {
+        "android": "showmax://28",
+        "ios": "showmax://28",
+        "web": "https://www.showmax.com/28"
+      },
+      "youtube": {
+        "android": "vnd.youtube://28",
+        "ios": "vnd.youtube://28",
+        "web": "https://www.youtube.com/watch?v=28"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100029",
+    "tmdbId": 100029,
+    "tmdbType": "tv",
+    "title": "Mock Show 29",
+    "year": 2024,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M29",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=29",
+    "genres": [
+      "thriller"
+    ],
+    "runtimeMinutes": 49,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://29",
+        "ios": "nflx://29",
+        "web": "https://www.netflix.com/title/29"
+      },
+      "disney": {
+        "android": "disneyplus://29",
+        "ios": "disneyplus://29",
+        "web": "https://www.disneyplus.com/29"
+      },
+      "prime": {
+        "android": "intent://29",
+        "ios": "aiv://29",
+        "web": "https://www.amazon.com/gp/video/detail/29"
+      },
+      "max": {
+        "android": "hbomax://29",
+        "ios": "hbomax://29",
+        "web": "https://www.max.com/29"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/29",
+        "ios": "com.apple.tv://29",
+        "web": "https://tv.apple.com/29"
+      },
+      "hulu": {
+        "android": "hulu://29",
+        "ios": "hulu://29",
+        "web": "https://www.hulu.com/29"
+      },
+      "paramount": {
+        "android": "pplus://29",
+        "ios": "pplus://29",
+        "web": "https://www.paramountplus.com/29"
+      },
+      "showmax": {
+        "android": "showmax://29",
+        "ios": "showmax://29",
+        "web": "https://www.showmax.com/29"
+      },
+      "youtube": {
+        "android": "vnd.youtube://29",
+        "ios": "vnd.youtube://29",
+        "web": "https://www.youtube.com/watch?v=29"
+      }
+    }
+  },
+  {
+    "id": "tmdb-tv-100030",
+    "tmdbId": 100030,
+    "tmdbType": "tv",
+    "title": "Mock Show 30",
+    "year": 2010,
+    "posterUrl": "https://placehold.co/400x600/141414/FAFAFA/png?text=M30",
+    "backdropUrl": "https://placehold.co/1280x720/0B0B0C/E50914/png?text=30",
+    "genres": [
+      "action"
+    ],
+    "runtimeMinutes": 50,
+    "providers": {
+      "ZA": [
+        "netflix",
+        "disney",
+        "prime",
+        "appletv",
+        "showmax",
+        "youtube"
+      ],
+      "US": [
+        "netflix",
+        "disney",
+        "prime",
+        "max",
+        "appletv",
+        "hulu",
+        "paramount",
+        "showmax",
+        "youtube"
+      ]
+    },
+    "deepLinks": {
+      "netflix": {
+        "android": "nflx://30",
+        "ios": "nflx://30",
+        "web": "https://www.netflix.com/title/30"
+      },
+      "disney": {
+        "android": "disneyplus://30",
+        "ios": "disneyplus://30",
+        "web": "https://www.disneyplus.com/30"
+      },
+      "prime": {
+        "android": "intent://30",
+        "ios": "aiv://30",
+        "web": "https://www.amazon.com/gp/video/detail/30"
+      },
+      "max": {
+        "android": "hbomax://30",
+        "ios": "hbomax://30",
+        "web": "https://www.max.com/30"
+      },
+      "appletv": {
+        "android": "https://tv.apple.com/30",
+        "ios": "com.apple.tv://30",
+        "web": "https://tv.apple.com/30"
+      },
+      "hulu": {
+        "android": "hulu://30",
+        "ios": "hulu://30",
+        "web": "https://www.hulu.com/30"
+      },
+      "paramount": {
+        "android": "pplus://30",
+        "ios": "pplus://30",
+        "web": "https://www.paramountplus.com/30"
+      },
+      "showmax": {
+        "android": "showmax://30",
+        "ios": "showmax://30",
+        "web": "https://www.showmax.com/30"
+      },
+      "youtube": {
+        "android": "vnd.youtube://30",
+        "ios": "vnd.youtube://30",
+        "web": "https://www.youtube.com/watch?v=30"
+      }
+    }
+  }
+]

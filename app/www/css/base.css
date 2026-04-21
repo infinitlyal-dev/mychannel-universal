@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--mc-font);
+  background: var(--mc-ground);
+  color: var(--mc-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+a {
+  color: var(--mc-text);
+}
+
+.screen {
+  min-height: 100%;
+  padding: 16px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0));
+}
+
+.muted {
+  color: var(--mc-muted);
+  font-size: 0.85rem;
+}

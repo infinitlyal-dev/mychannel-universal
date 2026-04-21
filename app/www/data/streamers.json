@@ -1,0 +1,124 @@
+[
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "logo": "assets/streamers/netflix.png",
+    "regions": [
+      "ZA",
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "nflx://",
+      "ios": "nflx://",
+      "web": "https://www.netflix.com/title/"
+    }
+  },
+  {
+    "id": "disney",
+    "name": "Disney+",
+    "logo": "assets/streamers/disney.png",
+    "regions": [
+      "ZA",
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "disneyplus://",
+      "ios": "disneyplus://",
+      "web": "https://www.disneyplus.com/"
+    }
+  },
+  {
+    "id": "prime",
+    "name": "Prime Video",
+    "logo": "assets/streamers/prime.png",
+    "regions": [
+      "ZA",
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "intent://",
+      "ios": "aiv://",
+      "web": "https://www.amazon.com/gp/video/detail/"
+    }
+  },
+  {
+    "id": "max",
+    "name": "Max",
+    "logo": "assets/streamers/max.png",
+    "regions": [
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "hbomax://",
+      "ios": "hbomax://",
+      "web": "https://www.max.com/"
+    }
+  },
+  {
+    "id": "appletv",
+    "name": "Apple TV+",
+    "logo": "assets/streamers/appletv.png",
+    "regions": [
+      "ZA",
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "https://tv.apple.com/",
+      "ios": "com.apple.tv://",
+      "web": "https://tv.apple.com/"
+    }
+  },
+  {
+    "id": "hulu",
+    "name": "Hulu",
+    "logo": "assets/streamers/hulu.png",
+    "regions": [
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "hulu://",
+      "ios": "hulu://",
+      "web": "https://www.hulu.com/"
+    }
+  },
+  {
+    "id": "paramount",
+    "name": "Paramount+",
+    "logo": "assets/streamers/paramount.png",
+    "regions": [
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "pplus://",
+      "ios": "pplus://",
+      "web": "https://www.paramountplus.com/"
+    }
+  },
+  {
+    "id": "showmax",
+    "name": "Showmax",
+    "logo": "assets/streamers/showmax.png",
+    "regions": [
+      "ZA"
+    ],
+    "deepLinkSchemes": {
+      "android": "showmax://",
+      "ios": "showmax://",
+      "web": "https://www.showmax.com/"
+    }
+  },
+  {
+    "id": "youtube",
+    "name": "YouTube",
+    "logo": "assets/streamers/youtube.png",
+    "regions": [
+      "ZA",
+      "US"
+    ],
+    "deepLinkSchemes": {
+      "android": "vnd.youtube://",
+      "ios": "vnd.youtube://",
+      "web": "https://www.youtube.com/watch?v="
+    }
+  }
+]

@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json && npm run copy:www",
-    "copy:www": "node scripts/copy-www.mjs",
+    "build": "npm run build:bundle && npx cap copy",
+    "build:bundle": "node ./scripts/build.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "cap:sync": "npx cap sync",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^6.2.0",
+    "esbuild": "^0.25.3",
     "lit-html": "^3.2.1",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"

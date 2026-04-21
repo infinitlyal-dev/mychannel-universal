@@ -1,0 +1,9 @@
+:root {
+  --mc-ground: #0b0b0c;
+  --mc-surface: #141414;
+  --mc-red: #e50914;
+  --mc-text: #fafafa;
+  --mc-muted: #8a8a8f;
+  --mc-radius: 2px;
+  --mc-font: system-ui, -apple-system, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+}

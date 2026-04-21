@@ -1,0 +1,153 @@
+.layout {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout__body {
+  flex: 1;
+}
+
+.bottom-tabs {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--mc-surface);
+  background: var(--mc-ground);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.bottom-tabs button {
+  background: transparent;
+  border: none;
+  color: var(--mc-text);
+  padding: 12px 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.bottom-tabs button[aria-current='true'] {
+  color: var(--mc-red);
+  font-weight: 600;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.grid-7x4 {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.pill-row button {
+  background: var(--mc-surface);
+  border: 1px solid var(--mc-surface);
+  color: var(--mc-text);
+  border-radius: var(--mc-radius);
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.hero {
+  border: 1px solid var(--mc-surface);
+  border-radius: var(--mc-radius);
+  overflow: hidden;
+  background: var(--mc-surface);
+}
+
+.hero__backdrop {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.hero__meta {
+  padding: 12px;
+}
+
+.strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.strip mc-poster-card {
+  width: 120px;
+  flex: 0 0 auto;
+}
+
+.lineup {
+  display: grid;
+  gap: 8px;
+}
+
+.lineup__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--mc-surface);
+  border-radius: var(--mc-radius);
+  background: var(--mc-surface);
+}
+
+.wordmark {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 2.4rem;
+}
+
+.card-select {
+  border: 1px solid var(--mc-surface);
+  border-radius: var(--mc-radius);
+  padding: 16px;
+  background: var(--mc-surface);
+  cursor: pointer;
+  text-align: left;
+  color: var(--mc-text);
+}
+
+.card-select[aria-pressed='true'] {
+  outline: 2px solid var(--mc-red);
+}
+
+.search {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--mc-radius);
+  border: 1px solid var(--mc-surface);
+  background: var(--mc-ground);
+  color: var(--mc-text);
+  margin-bottom: 12px;
+}
+
+.banner {
+  border: 1px solid var(--mc-red);
+  color: var(--mc-text);
+  background: var(--mc-surface);
+  padding: 10px;
+  border-radius: var(--mc-radius);
+  margin-top: 12px;
+}

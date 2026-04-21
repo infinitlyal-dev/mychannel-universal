@@ -1,0 +1,14 @@
+{
+  "health": {
+    "status": "ok",
+    "version": "1.0.0"
+  },
+  "providersSample": {
+    "success": true,
+    "region": "US",
+    "providers": [
+      "netflix",
+      "disney"
+    ]
+  }
+}
