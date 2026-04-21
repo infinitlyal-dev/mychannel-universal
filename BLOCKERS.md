@@ -67,3 +67,31 @@
 4. Commit everything: `setup: initial project structure + INTERFACES + types`
 5. Set remote and push `main` + `backend` + `app` + `data` branches
 6. Wait for Al to fire Codex/Cursor/Claude Code day-1 prompts
+
+---
+
+## Workstream C blockers (2026-04-21)
+
+### C5 — Build execution blocked on TMDB_API_KEY
+
+**Status:** C1–C4 + C6 complete and committed. C5 cannot run.
+
+**Blocker:** `TMDB_API_KEY` env var not set in this session.
+
+**What is ready:**
+- `data/scripts/build-catalogue.ts` — type-checks clean, concurrency 10, resilient (logs + continues), 3× retry with `Retry-After`.
+- `data/seed-shows.json` — 300 entries (202 TV / 98 movie). 107 confident IDs, 193 use `tmdbId: 0` sentinel → resolved by TMDB `/search` at build time.
+- `data/schema/catalogue.schema.json` — draft-2020-12 strict, `additionalProperties:false`. Validated good/bad Show objects (11 errors on malformed).
+- Provider name-map covers 9 streamers with variants.
+
+**Unblock:**
+```bash
+cd C:\dev\mychannel-universal-data
+# set TMDB_API_KEY (v3 key) in session
+node --import tsx data/scripts/build-catalogue.ts
+```
+Expected: ~3 min, ≥280 clean shows per "better 280 clean than 300 broken" rule.
+
+Post-run: asset HEAD check → schema-tester subagent on 50-sample → commit `catalogue.json`.
+
+Owner: Workstream C.
