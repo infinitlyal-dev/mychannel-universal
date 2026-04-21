@@ -9,10 +9,11 @@ Use GPT-5.3-Codex (default). Verify via the model picker.
 ### A1 — Scaffold Vercel Edge project
 - cd to /api/ on branch `backend`
 - Create Vercel Edge-runtime TypeScript project: package.json, tsconfig.json, vercel.json
-- Dependencies: @upstash/redis, zod
+- Dependencies: zod (Upstash is DEFERRED to v1.2 — do NOT install @upstash/redis in v1)
 - Commit: "A1: scaffold Vercel Edge project"
 ### A2 — Middleware
-- /api/_middleware.ts with CORS (allow capacitor://localhost, http://localhost, https://mychannel-api.vercel.app), X-Device-Id UUID v4 validation (400 if missing/bad), Upstash Redis sliding-window rate limiting per device
+- /api/_middleware.ts with CORS (allow capacitor://localhost, http://localhost, https://mychannel-api.vercel.app), X-Device-Id UUID v4 validation (400 if missing/bad)
+- Rate limiting: SKIP Upstash in v1. Use an in-memory per-device counter (Map<deviceId, {count, resetAt}>) — acceptable rough backstop; edge instances are ephemeral so it won't be strict. Leave a `// TODO v1.2: swap for Upstash sliding-window` marker at the limiter call site.
 - Commit: "A2: middleware"
 ### A3 — GET /api/health
 - Returns {status: 'ok', version: '1.0.0', timestamp: ISO}
@@ -25,7 +26,7 @@ Use GPT-5.3-Codex (default). Verify via the model picker.
 - ?region=ZA|US, default ZA, reject others 400
 - Whitelist mapping: Netflix→netflix, Disney Plus→disney, Amazon Prime Video→prime, Max→max, Apple TV Plus→appletv, Hulu→hulu, Paramount Plus→paramount, Showmax→showmax, YouTube→youtube
 - Response matches TmdbProvidersResponse in /shared/types.ts
-- Rate limit 100/hr per device. Cache-Control: public, max-age=86400
+- Rate limit 100/hr per device (in-memory per A2). Cache-Control: public, max-age=86400
 - Evidence: vitest covering valid, missing deviceId, bad region, TMDB 404, TMDB 429
 - Commit: "A4: TMDB providers proxy"
 ### A5 — POST /api/elevenlabs
@@ -34,7 +35,7 @@ Use GPT-5.3-Codex (default). Verify via the model picker.
 - Model must be eleven_flash_v2_5
 - Text ≤500 chars
 - Returns audio/mpeg
-- Rate limit 10/hr per device
+- Rate limit 10/hr per device (in-memory per A2)
 - Note: v1 app does NOT call this at runtime — exists for Minnie's asset pipeline and v2 future-proofing
 - Commit: "A5: ElevenLabs TTS"
 ### A6 — /api/al and /api/transcribe stubs
@@ -43,7 +44,10 @@ Use GPT-5.3-Codex (default). Verify via the model picker.
 ### A7 — Deploy
 - Vercel team: team_yiwk7JTdU3fdQVwcuOmsEVlT
 - Project name: mychannel-api
-- Env vars: TMDB_API_KEY, UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN, ANTHROPIC_API_KEY, ELEVENLABS_API_KEY
+- Env vars needed on Vercel (Al will add these directly in the Vercel dashboard): TMDB_API_KEY, ELEVENLABS_API_KEY, ANTHROPIC_API_KEY
+- NOTE: Upstash env vars are NOT needed in v1 (deferred to v1.2)
+- **PAUSE BEFORE DEPLOYING.** When you reach this task: write a /api/BLOCKERS.md entry titled "A7: awaiting Vercel env vars" and ping Al via Dispatch. Do NOT run `vercel deploy` until Al confirms env vars are in place. Keep working on A8 (tests that can run locally against mock handlers) in the meantime.
+- After Al confirms: run `vercel deploy --prod`
 - Verify: curl https://mychannel-api.vercel.app/api/health returns 200; curl with valid X-Device-Id against /api/tmdb/providers/tv/1396?region=US returns Breaking Bad providers
 - Commit: "A7: deployed"
 ### A8 — Integration tests
@@ -63,5 +67,7 @@ Run all three against every PR before committing.
 ## Commit cadence
 One commit per task. Push to origin/backend after each. Do NOT merge to main — Cowork handles merges with my approval.
 ## Blockers
-Write to /api/BLOCKERS.md and continue with other tasks. Do NOT silently work around missing info.
+Write to /api/BLOCKERS.md and continue with other tasks. Do NOT silently work around missing info. For A7 specifically: pause and ping Al via Dispatch before deploying.
+## Usage
+Al is on Codex Plus (not Pro). If you hit credit limits, pause this workstream — do NOT attempt workarounds. Al will restart you when credits reset.
 GO.
