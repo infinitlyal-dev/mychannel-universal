@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 const VERSION = '1.0.0';
 const UUID_V4_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -8,8 +6,6 @@ const ALLOWED_ORIGINS = new Set([
   'http://localhost',
   'https://mychannel-api.vercel.app',
 ]);
-
-const deviceIdSchema = z.string().regex(UUID_V4_REGEX);
 
 interface RateLimitEntry {
   count: number;
@@ -125,9 +121,7 @@ export async function applyMiddleware(
   }
 
   const deviceId = request.headers.get('x-device-id');
-  const parsedDeviceId = deviceIdSchema.safeParse(deviceId);
-
-  if (!parsedDeviceId.success) {
+  if (!deviceId || !UUID_V4_REGEX.test(deviceId)) {
     return {
       headers,
       response: jsonResponse(
@@ -139,7 +133,7 @@ export async function applyMiddleware(
 
   if (options.rateLimit) {
     // TODO v1.2: swap for Upstash sliding-window
-    const allowed = checkRateLimit(parsedDeviceId.data, options.rateLimit);
+    const allowed = checkRateLimit(deviceId, options.rateLimit);
 
     if (!allowed) {
       return {
@@ -153,7 +147,7 @@ export async function applyMiddleware(
   }
 
   return {
-    deviceId: parsedDeviceId.data,
+    deviceId,
     headers,
   };
 }

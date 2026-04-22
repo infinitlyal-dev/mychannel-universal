@@ -13,7 +13,7 @@ const env = {
 
 const result = spawnSync(
   process.execPath,
-  [vitestBin, 'run', 'tests/integration.test.ts'],
+  [vitestBin, 'run', '--config', 'vitest.integration.config.ts'],
   {
     cwd: projectRoot,
     env,

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import type { ElevenLabsTtsRequest } from '../shared/types';
+import type { ElevenLabsTtsRequest } from './shared-types';
 import { applyMiddleware, jsonResponse } from './_middleware';
 
 export const config = {
@@ -67,7 +67,7 @@ export default async function elevenlabsHandler(request: Request): Promise<Respo
     );
   }
 
-  const apiKey = process.env.ELEVENLABS_API_KEY;
+  const apiKey = process.env.ELEVENLABS_API_KEY?.trim();
 
   if (!apiKey) {
     return jsonResponse(

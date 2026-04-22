@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import type { Region, StreamerId, TmdbProvidersResponse } from '../../../../shared/types';
+import type { Region, StreamerId, TmdbProvidersResponse } from '../../../shared-types';
 import { applyMiddleware, jsonResponse } from '../../../_middleware';
 
 export const config = {
@@ -154,7 +154,7 @@ export default async function tmdbProvidersHandler(
     );
   }
 
-  const apiKey = process.env.TMDB_API_KEY;
+  const apiKey = process.env.TMDB_API_KEY?.trim();
 
   if (!apiKey) {
     return typedErrorResponse(
