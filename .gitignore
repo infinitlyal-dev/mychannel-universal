@@ -7,6 +7,8 @@ npm-debug.log*
 .env.local
 .vscode/
 .idea/
-android/
-ios/
+.playwright-mcp/
+# Capacitor native projects live under app/ — do not ignore them globally.
+/android/
+/ios/
 coverage/

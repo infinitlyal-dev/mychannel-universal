@@ -1,0 +1,62 @@
+import './components/button';
+import './components/top-bar';
+import './components/progress-bar';
+import './components/poster-card';
+import './components/streamer-tile';
+import './components/modal';
+import { AppLauncher } from '@capacitor/app-launcher';
+import { LocalNotifications } from '@capacitor/local-notifications';
+import { loadCatalogue, loadStreamers } from './data/catalogue';
+import { mountRouter, navigate, type Session } from './router';
+import { defaultState, loadState, saveState } from './state/store';
+import type { UserState } from './types';
+import type { SlotPick } from './lib/scheduler';
+import { loadDraftSlotsJson } from './lib/web-session';
+
+const outlet = () => document.getElementById('app')!;
+
+async function bootstrap(): Promise<void> {
+  const [catalogue, streamers, stored] = await Promise.all([loadCatalogue(), loadStreamers(), loadState()]);
+  const state: UserState = stored ?? defaultState();
+  let draftSlots: SlotPick[] = [];
+  const rawDraft = loadDraftSlotsJson();
+  if (rawDraft) {
+    try {
+      draftSlots = JSON.parse(rawDraft) as SlotPick[];
+    } catch {
+      draftSlots = [];
+    }
+  }
+  const session: Session = { draftSlots, previewEdits: {}, notifyDenied: false };
+  let invalidate: () => void = () => {};
+  const patch = async (partial: Partial<UserState>) => {
+    Object.assign(state, partial);
+    await saveState(state);
+    invalidate();
+  };
+  const ctx = {
+    state,
+    patch,
+    navigate,
+    redraw: () => invalidate(),
+    catalogue,
+    streamers,
+    session,
+  };
+  void LocalNotifications.addListener('localNotificationActionPerformed', (action) => {
+    const extra = action.notification.extra as { deepLink?: string } | undefined;
+    const url = extra?.deepLink;
+    if (url) void AppLauncher.openUrl({ url });
+  });
+  invalidate = mountRouter(ctx, outlet());
+  if (state.onboarded) {
+    const r = window.location.hash.replace(/^#\/?/, '') || 'splash';
+    const wizard = ['splash', 'welcome', 'region', 'wizard/streamers', 'wizard/shows', 'wizard/times', 'wizard/preview', 'notify', 'scheduling'].includes(r);
+    if (wizard) navigate('now');
+  } else {
+    const r = window.location.hash.replace(/^#\/?/, '');
+    if (r === 'now' || r === 'week' || r === 'shows-picks' || r === 'settings' || r === 'about') navigate('splash');
+  }
+}
+
+void bootstrap();
