@@ -57,6 +57,12 @@ export function slotsToScheduleEntries(
 ): Omit<ScheduleEntry, 'showId'>[] {
   return slots.map((s) => {
     const { startTime, endTime } = bandWindow(s.band);
-    return { dayOfWeek: s.dayOfWeek, startTime, endTime, enabled: true };
+    return {
+      id: `slot-${s.dayOfWeek}-${startTime}`,
+      dayOfWeek: s.dayOfWeek,
+      startTime,
+      endTime,
+      enabled: true,
+    };
   });
 }
