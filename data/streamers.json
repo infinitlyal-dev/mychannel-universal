@@ -36,7 +36,7 @@
     "id": "max",
     "name": "Max",
     "logo": "assets/streamers/max.png",
-    "regions": ["ZA", "US"],
+    "regions": ["US"],
     "deepLinkSchemes": {
       "android": "https://play.max.com/show/",
       "ios": "https://play.max.com/show/",
@@ -77,14 +77,14 @@
     }
   },
   {
-    "id": "showmax",
-    "name": "Showmax",
-    "logo": "assets/streamers/showmax.png",
-    "regions": ["ZA"],
+    "id": "peacock",
+    "name": "Peacock",
+    "logo": "assets/streamers/peacock.png",
+    "regions": ["US"],
     "deepLinkSchemes": {
-      "android": "https://www.showmax.com/za/search?q=",
-      "ios": "https://www.showmax.com/za/search?q=",
-      "web": "https://www.showmax.com/za/search?q="
+      "android": "https://www.peacocktv.com/watch/asset/",
+      "ios": "https://www.peacocktv.com/watch/asset/",
+      "web": "https://www.peacocktv.com/watch/asset/"
     }
   },
   {
