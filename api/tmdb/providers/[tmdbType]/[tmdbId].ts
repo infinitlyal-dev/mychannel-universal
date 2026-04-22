@@ -20,7 +20,9 @@ const PROVIDER_NAME_TO_ID: Record<string, StreamerId> = {
   Max: 'max',
   Netflix: 'netflix',
   'Paramount Plus': 'paramount',
-  Showmax: 'showmax',
+  Peacock: 'peacock',
+  'Peacock Premium': 'peacock',
+  'Peacock Premium Plus': 'peacock',
   YouTube: 'youtube',
 };
 

@@ -5,7 +5,7 @@ export type Region = 'ZA' | 'US';
 
 export type StreamerId =
   | 'netflix' | 'disney' | 'prime' | 'max' | 'appletv'
-  | 'hulu' | 'paramount' | 'showmax' | 'youtube';
+  | 'hulu' | 'paramount' | 'peacock' | 'youtube';
 
 export interface TmdbProvidersResponse {
   success: boolean;
