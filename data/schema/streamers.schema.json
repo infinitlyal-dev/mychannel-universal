@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mychannel.app/schema/streamers.json",
+  "title": "Streamers manifest",
+  "type": "array",
+  "minItems": 9,
+  "maxItems": 9,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "name", "logo", "regions", "deepLinkSchemes"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "enum": ["netflix", "disney", "prime", "max", "appletv", "hulu", "paramount", "peacock", "youtube"]
+      },
+      "name": { "type": "string", "minLength": 1 },
+      "logo": { "type": "string", "pattern": "^assets/streamers/[a-z]+\\.png$" },
+      "regions": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 2,
+        "uniqueItems": true,
+        "items": { "type": "string", "enum": ["ZA", "US"] }
+      },
+      "deepLinkSchemes": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["android", "ios", "web"],
+        "properties": {
+          "android": { "type": "string", "minLength": 1 },
+          "ios": { "type": "string", "minLength": 1 },
+          "web": { "type": "string", "pattern": "^https://" }
+        }
+      }
+    }
+  }
+}

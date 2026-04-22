@@ -1,0 +1,14 @@
+[
+  { "id": "drama", "name": "Drama", "icon": "🎭" },
+  { "id": "comedy", "name": "Comedy", "icon": "😂" },
+  { "id": "crime", "name": "Crime", "icon": "🚔" },
+  { "id": "scifi", "name": "Sci-Fi", "icon": "🚀" },
+  { "id": "fantasy", "name": "Fantasy", "icon": "🐉" },
+  { "id": "thriller", "name": "Thriller", "icon": "🔪" },
+  { "id": "action", "name": "Action", "icon": "💥" },
+  { "id": "romance", "name": "Romance", "icon": "❤️" },
+  { "id": "documentary", "name": "Documentary", "icon": "🎥" },
+  { "id": "animation", "name": "Animation", "icon": "🎨" },
+  { "id": "horror", "name": "Horror", "icon": "👻" },
+  { "id": "reality", "name": "Reality", "icon": "📺" }
+]

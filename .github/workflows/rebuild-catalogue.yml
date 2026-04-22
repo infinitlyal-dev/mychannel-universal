@@ -1,0 +1,55 @@
+name: Nightly catalogue rebuild
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 03:00 UTC daily
+  workflow_dispatch:       # Allow manual runs
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout data branch
+        uses: actions/checkout@v4
+        with:
+          ref: data
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build catalogue
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node --import tsx data/scripts/build-catalogue.ts
+
+      - name: Check size
+        run: |
+          SIZE=$(stat -c%s data/catalogue.json)
+          echo "catalogue.json size: $SIZE bytes"
+          if [ $SIZE -gt 2097152 ]; then
+            echo "FAIL: catalogue.json > 2 MB"
+            exit 1
+          fi
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "catalogue-bot"
+          git config user.email "bot@mychannel.app"
+          if git diff --quiet data/catalogue.json; then
+            echo "No changes in catalogue.json"
+            exit 0
+          fi
+          git add data/catalogue.json data/build-errors.log
+          git commit -m "catalogue: nightly rebuild $(date -u +%Y-%m-%d)"
+          git push origin data
