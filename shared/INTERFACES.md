@@ -130,7 +130,7 @@ export type StreamerId =
 
 &#x20; | 'netflix' | 'disney' | 'prime' | 'max' | 'appletv'
 
-&#x20; | 'hulu' | 'paramount' | 'showmax' | 'youtube';
+&#x20; | 'hulu' | 'paramount' | 'peacock' | 'youtube';
 
 
 
@@ -378,7 +378,7 @@ Returns `{status: 'ok', version: '1.0.0'}`. Used by app on startup to confirm ba
 
 \- 300 shows total
 
-\- 9 streamers × 2 regions (ZA, US)
+\- 9 streamers total (SA=5, US=9, YouTube overlaps both)
 
 \- Genres filtered to 12 buckets
 
@@ -670,7 +670,7 @@ Authoritative reference for Workstream B.
 
 
 
-\*\*Screen 4 — Streamer picker (wizard 1/4):\*\* Region-filtered streamer tiles, multi-select, ≥1 required. SA shows 6, US shows 9. Continue disabled until ≥1 picked.
+\*\*Screen 4 — Streamer picker (wizard 1/4):\*\* Region-filtered streamer tiles, multi-select, ≥1 required. SA shows 5 (Netflix, Disney+, Prime Video, Apple TV+, YouTube), US shows 9 (Netflix, Disney+, Prime Video, Max, Apple TV+, Hulu, Paramount+, Peacock, YouTube). Continue disabled until ≥1 picked.
 
 
 
@@ -759,6 +759,10 @@ Authoritative reference for Workstream B.
 \- Kids mode (v2+)
 
 \- Android TV, Apple TV, Fire TV (v1.5+)
+
+\- Showmax (removed 2026-04-22 — shutting down in SA)
+
+\- SABC+ / eTV+ South African streamers (deferred to v1.5)
 
 \- Account system, sync, sign-in (v2)
 
