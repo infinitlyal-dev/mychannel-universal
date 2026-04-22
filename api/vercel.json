@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "*.ts": {
+    "**/*.ts": {
       "runtime": "edge"
     }
   },
@@ -24,7 +24,7 @@
     },
     {
       "src": "/api/tmdb/providers/([^/]+)/([^/]+)",
-      "dest": "/tmdb.ts?tmdbType=$1&tmdbId=$2"
+      "dest": "/tmdb/providers/[tmdbType]/[tmdbId].ts?tmdbType=$1&tmdbId=$2"
     }
   ]
 }
