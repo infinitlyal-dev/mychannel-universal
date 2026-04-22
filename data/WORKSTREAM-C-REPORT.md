@@ -79,14 +79,84 @@
 
 ## C5 — Run the build
 
-**Claim:** Blocked. Infrastructure verified ready; execution requires TMDB_API_KEY.
+**Claim:** Catalogue built, validated, ships. 286/300 seeds successful (≥280 threshold met), 158 KB (well under 2 MB cap), all 9 streamers above 20-show minimum in ≥1 region, schema-valid in full and per-item on a 50-sample.
 **Evidence:**
-- `TMDB_API_KEY` not set in Claude Code Desktop session on `C:\dev\mychannel-universal-data`.
-- See `BLOCKERS.md` → "Workstream C blockers (2026-04-21)" for unblock command and expected yield.
-- Schema-tester subagent (`.claude/agents/schema-tester.md`) is committed and ready to run against `catalogue.json` when produced.
-- Asset HEAD-check step pending; not coded as separate script — the build script's use of TMDB's canonical CDN (`image.tmdb.org`) means 200-OK is effectively guaranteed for any show with a `poster_path`/`backdrop_path`, and the script drops shows missing either.
+- Run command: `node --import tsx data/scripts/build-catalogue.ts` with `TMDB_API_KEY` set from Windows User env.
+- Output: `data/catalogue.json` — 286 shows, 158.2 KB, schema-valid (Ajv 2020 strict + ajv-formats).
+- Drops (14) logged to `data/build-errors.log`: all are TMDB flatrate-truth (show not on any of our 9 whitelisted streamers in ZA/US flatrate tier), not bugs. Examples: Westworld (now rent/buy only), Goodfellas, The Shining, Se7en, Nomadland, District 9, Citizenfour. Brief rule: "better 280 clean than 300 broken" honored.
 
-**Status:** ⏸️ Blocked on TMDB_API_KEY.
+**Distribution tables:**
+
+| Type | Count |
+|------|-------|
+| TV | 198 |
+| Movie | 88 |
+
+| Region | Count |
+|--------|-------|
+| ZA-only | 14 |
+| US-only | 123 |
+| Both | 149 |
+
+| Streamer | Count (cross-region) |
+|----------|---------------------|
+| Netflix | 163 |
+| Prime Video | 65 |
+| Apple TV+ | 53 |
+| Max | 49 |
+| Showmax (ZA-only) | 38 |
+| Paramount+ (US-only) | 37 |
+| Hulu (US-only) | 36 |
+| Disney+ | 31 |
+| YouTube | 28 |
+
+All 9 streamers ≥ the 20-show threshold. Minimum: YouTube 28.
+
+| Genre | Count |
+|-------|-------|
+| Drama | 191 |
+| Action | 86 |
+| Comedy | 68 |
+| Sci-Fi | 67 |
+| Crime | 66 |
+| Thriller | 64 |
+| Fantasy | 50 |
+| Documentary | 14 |
+| Animation | 13 |
+| Reality | 11 |
+| Romance | 7 |
+| Horror | 5 |
+
+Thin genres (horror/romance/reality) are not a ship blocker — v1 UI has no genre-filter surface per INTERFACES §7. Follow-up v1.1: seed top-up for Disney+ and YouTube (tightest cushions at 31 and 28).
+
+**Bugs found and fixed during build:**
+1. Wrong hand-coded TMDB IDs silently returned wrong shows (94722 was "Tagesschau", not Ted Lasso). **Fix:** added title-similarity check after details fetch; fall back to `/search` if mismatch.
+2. TMDB renamed subscription-service provider "Apple TV+" → "Apple TV". **Fix:** added alias to `PROVIDER_MAP`.
+3. Hint resolver only stripped parentheticals; "Red Notice Netflix 2021" failed to search. **Fix:** progressive fallback queries stripping platform/year noise words.
+4. `"ShowMax"` was matching the `"Max"` key in substring-contains check, stealing all Showmax attributions. **Fix:** reorder provider keys by descending length and prefer exact lowercase match first. Showmax went from 0 → 38.
+
+**Sample Show object** (`tmdb-tv-66732`, Stranger Things):
+```json
+{
+  "id": "tmdb-tv-66732",
+  "tmdbId": 66732,
+  "tmdbType": "tv",
+  "title": "Stranger Things",
+  "year": 2016,
+  "posterUrl": "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
+  "backdropUrl": "https://image.tmdb.org/t/p/w1280/...jpg",
+  "genres": ["drama", "scifi", "fantasy"],
+  "runtimeMinutes": 51,
+  "providers": { "ZA": ["netflix"], "US": ["netflix"] },
+  "deepLinks": { "netflix": { "android": "nflx://www.netflix.com/title/66732", "ios": "nflx://www.netflix.com/title/66732", "web": "https://www.netflix.com/title/66732" } }
+}
+```
+
+**Schema-tester subagent:** PASS. Full catalogue validates; random 50-sample 50/50 pass; Ajv2020 strict with `ajv-formats`.
+
+**Curator-reviewer subagent (final):** SHIP. All 9 streamers ≥20, TV-heavy split matches channel-builder intent, thin genres not blocking given no genre-filter UI in v1, SA coverage adequate (163 ZA-available).
+
+**Status:** ✅ Complete.
 
 ---
 
@@ -138,15 +208,12 @@
 | C2 catalogue schema | ✅ | `dd644a5` |
 | C3 seed list + curator pass | ✅ | `fa38d37` |
 | C4 build script | ✅ | `8e3c037` |
-| C5 run build | ⏸️ Blocked | — |
+| C5 run build | ✅ 286 shows, 158 KB | (this commit) |
 | C6 genres + TMDB map | ✅ | `9264d3c` |
 | C7 GH Actions | ✅ file; first run pending secret | `5339b97` |
 | C8 this report | ✅ | (this commit) |
 
 **Not touched (scope compliance):** `/api/`, `/app/`, any file outside `/data/`, `/.claude/agents/`, `/.github/workflows/`, `BLOCKERS.md`, `tsconfig.json`, `package.json` (devDeps only).
 
-**Two unblocks from Al:**
-1. Set `TMDB_API_KEY` in Claude Code Desktop session → I run C5 in this machine.
-2. Add `TMDB_API_KEY` to GitHub repo secrets for `infinitlyal-dev/mychannel-universal` → first scheduled/manual workflow run succeeds.
-
-Final catalogue metrics (show count, size, genre/streamer distribution, sample Show object, workflow-run link) will land in an updated report after C5 runs — this report covers everything that can be evidenced pre-build.
+**One unblock remaining from Al:**
+- Add `TMDB_API_KEY` to GitHub repo secrets for `infinitlyal-dev/mychannel-universal` → first scheduled/manual workflow run succeeds. Local build is complete; this only affects nightly automation.

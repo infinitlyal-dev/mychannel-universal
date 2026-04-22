@@ -72,11 +72,19 @@
 
 ## Workstream C blockers (2026-04-21)
 
-### C5 — Build execution blocked on TMDB_API_KEY
+### C5 — RESOLVED 2026-04-21
 
-**Status:** C1–C4 + C6 complete and committed. C5 cannot run.
+**Status:** Build run successful. 286/300 shows, 158 KB. Schema-tester PASS. Curator SHIP. See `data/WORKSTREAM-C-REPORT.md` → C5 section for full evidence.
 
-**Blocker:** `TMDB_API_KEY` env var not set in this session.
+Remaining C-workstream unblock: add `TMDB_API_KEY` to GitHub repo secrets for nightly rebuild automation (C7). Local build is complete and committed.
+
+---
+
+### C5 — original blocker (historical)
+
+**Status:** RESOLVED — API key set in Windows User env, pulled into session, build executed.
+
+**Original blocker:** `TMDB_API_KEY` env var not set in this session.
 
 **What is ready:**
 - `data/scripts/build-catalogue.ts` — type-checks clean, concurrency 10, resilient (logs + continues), 3× retry with `Retry-After`.

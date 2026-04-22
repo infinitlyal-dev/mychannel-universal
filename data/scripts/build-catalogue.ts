@@ -32,6 +32,8 @@ const PROVIDER_MAP: Record<string, StreamerId> = {
   'HBO Max': 'max',
   'Apple TV Plus': 'appletv',
   'Apple TV+': 'appletv',
+  'Apple TV': 'appletv',
+  'Apple TV Amazon Channel': 'appletv',
   'Hulu': 'hulu',
   'Paramount Plus': 'paramount',
   'Paramount+': 'paramount',
@@ -70,11 +72,17 @@ async function tmdbFetch<T>(path: string, params: Record<string, string> = {}): 
 async function resolveSeedId(entry: SeedEntry): Promise<number> {
   if (entry.tmdbId > 0) return entry.tmdbId;
   const endpoint = entry.tmdbType === 'tv' ? '/search/tv' : '/search/movie';
-  const stripped = entry.hint.replace(/\s*\([^)]*\)\s*/g, '').trim();
-  const res = await tmdbFetch<{ results: Array<{ id: number }> }>(endpoint, { query: stripped });
-  const id = res.results[0]?.id;
-  if (!id) throw new Error(`No TMDB match: ${entry.hint}`);
-  return id;
+  const base = entry.hint.replace(/\s*\([^)]*\)\s*/g, ' ').trim();
+  // Progressive queries: full, minus platform/tagger words, then title-core
+  const NOISE = /\b(netflix|hulu|hbo|max|prime|apple|paramount|showmax|youtube|disney|plus|showtime|fx|prime|2019|2020|2021|2022|2023|2024|2025|fincher)\b/gi;
+  const cleaner = base.replace(NOISE, ' ').replace(/\s+/g, ' ').trim();
+  const candidates = [...new Set([base, cleaner, cleaner.split(/[-–—:]/)[0].trim()])].filter(Boolean);
+  for (const q of candidates) {
+    const res = await tmdbFetch<{ results: Array<{ id: number }> }>(endpoint, { query: q });
+    const id = res.results[0]?.id;
+    if (id) return id;
+  }
+  throw new Error(`No TMDB match: ${entry.hint}`);
 }
 
 async function fetchDetails(type: 'tv' | 'movie', id: number) {
@@ -87,14 +95,19 @@ async function fetchProviders(type: 'tv' | 'movie', id: number) {
   );
 }
 
+const PROVIDER_ENTRIES_LC = Object.entries(PROVIDER_MAP)
+  .map(([k, v]) => [k.toLowerCase(), v] as const)
+  .sort((a, b) => b[0].length - a[0].length);  // Longest keys first — prevents "Max" swallowing "ShowMax".
+
 function mapProviders(names: string[] | undefined): StreamerId[] {
   if (!names) return [];
   const out = new Set<StreamerId>();
   for (const name of names) {
-    if (PROVIDER_MAP[name]) { out.add(PROVIDER_MAP[name]); continue; }
-    for (const [k, v] of Object.entries(PROVIDER_MAP)) {
-      if (name.toLowerCase().includes(k.toLowerCase())) { out.add(v); break; }
-    }
+    const lc = name.toLowerCase();
+    const exact = PROVIDER_ENTRIES_LC.find(([k]) => k === lc);
+    if (exact) { out.add(exact[1]); continue; }
+    const partial = PROVIDER_ENTRIES_LC.find(([k]) => lc.includes(k));
+    if (partial) out.add(partial[1]);
   }
   return [...out];
 }
@@ -115,13 +128,25 @@ function buildDeepLinks(streamers: Streamer[], ids: StreamerId[], showTitle: str
   return out;
 }
 
+function titleMatches(a: string, b: string): boolean {
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').replace(/\s*\([^)]*\)\s*/g, '').trim();
+  const aTok = new Set(norm(a).split(/\s+/).filter(w => w.length > 2));
+  const bTok = norm(b).split(/\s+/).filter(w => w.length > 2);
+  if (bTok.length === 0) return true;
+  const hits = bTok.filter(w => aTok.has(w)).length;
+  return hits / bTok.length >= 0.5;
+}
+
 async function buildShow(entry: SeedEntry, streamers: Streamer[]): Promise<Show | null> {
   try {
-    const tmdbId = await resolveSeedId(entry);
-    const [details, providers] = await Promise.all([
-      fetchDetails(entry.tmdbType, tmdbId),
-      fetchProviders(entry.tmdbType, tmdbId),
-    ]);
+    let tmdbId = await resolveSeedId(entry);
+    let details: any = await fetchDetails(entry.tmdbType, tmdbId);
+    const fetchedTitle: string = details.name || details.title || '';
+    if (entry.tmdbId > 0 && !titleMatches(fetchedTitle, entry.hint)) {
+      const rescued = await resolveSeedId({ ...entry, tmdbId: 0 });
+      if (rescued !== tmdbId) { tmdbId = rescued; details = await fetchDetails(entry.tmdbType, tmdbId); }
+    }
+    const providers = await fetchProviders(entry.tmdbType, tmdbId);
 
     const title: string = details.name || details.title || entry.hint;
     const dateStr: string = details.first_air_date || details.release_date || '';
