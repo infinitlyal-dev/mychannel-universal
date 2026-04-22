@@ -8,7 +8,7 @@
     "Region": { "type": "string", "enum": ["ZA", "US"] },
     "StreamerId": {
       "type": "string",
-      "enum": ["netflix", "disney", "prime", "max", "appletv", "hulu", "paramount", "showmax", "youtube"]
+      "enum": ["netflix", "disney", "prime", "max", "appletv", "hulu", "paramount", "peacock", "youtube"]
     },
     "GenreId": {
       "type": "string",
@@ -76,7 +76,7 @@
             "appletv": { "$ref": "#/$defs/DeepLinkSet" },
             "hulu": { "$ref": "#/$defs/DeepLinkSet" },
             "paramount": { "$ref": "#/$defs/DeepLinkSet" },
-            "showmax": { "$ref": "#/$defs/DeepLinkSet" },
+            "peacock": { "$ref": "#/$defs/DeepLinkSet" },
             "youtube": { "$ref": "#/$defs/DeepLinkSet" }
           }
         }

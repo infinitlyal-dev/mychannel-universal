@@ -38,7 +38,9 @@ const PROVIDER_MAP: Record<string, StreamerId> = {
   'Paramount Plus': 'paramount',
   'Paramount+': 'paramount',
   'Paramount+ with Showtime': 'paramount',
-  'Showmax': 'showmax',
+  'Peacock': 'peacock',
+  'Peacock Premium': 'peacock',
+  'Peacock Premium Plus': 'peacock',
   'YouTube': 'youtube',
   'YouTube Premium': 'youtube',
 };
@@ -74,7 +76,7 @@ async function resolveSeedId(entry: SeedEntry): Promise<number> {
   const endpoint = entry.tmdbType === 'tv' ? '/search/tv' : '/search/movie';
   const base = entry.hint.replace(/\s*\([^)]*\)\s*/g, ' ').trim();
   // Progressive queries: full, minus platform/tagger words, then title-core
-  const NOISE = /\b(netflix|hulu|hbo|max|prime|apple|paramount|showmax|youtube|disney|plus|showtime|fx|prime|2019|2020|2021|2022|2023|2024|2025|fincher)\b/gi;
+  const NOISE = /\b(netflix|hulu|hbo|max|prime|apple|paramount|peacock|youtube|disney|plus|showtime|fx|prime|2019|2020|2021|2022|2023|2024|2025|fincher)\b/gi;
   const cleaner = base.replace(NOISE, ' ').replace(/\s+/g, ' ').trim();
   const candidates = [...new Set([base, cleaner, cleaner.split(/[-–—:]/)[0].trim()])].filter(Boolean);
   for (const q of candidates) {
@@ -118,7 +120,7 @@ function buildDeepLinks(streamers: Streamer[], ids: StreamerId[], showTitle: str
   for (const sid of ids) {
     const s = streamers.find(x => x.id === sid);
     if (!s) continue;
-    const token = ['showmax', 'youtube'].includes(sid) ? slug : String(tmdbId);
+    const token = ['youtube'].includes(sid) ? slug : String(tmdbId);
     out[sid] = {
       android: s.deepLinkSchemes.android + token,
       ios: s.deepLinkSchemes.ios + token,
