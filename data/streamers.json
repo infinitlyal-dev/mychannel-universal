@@ -2,100 +2,211 @@
   {
     "id": "netflix",
     "name": "Netflix",
+    "shortName": "Netflix",
     "logo": "assets/streamers/netflix.png",
-    "regions": ["ZA", "US"],
-    "deepLinkSchemes": {
-      "android": "nflx://www.netflix.com/title/",
-      "ios": "nflx://www.netflix.com/title/",
-      "web": "https://www.netflix.com/title/"
-    }
-  },
-  {
-    "id": "disney",
-    "name": "Disney+",
-    "logo": "assets/streamers/disney.png",
-    "regions": ["ZA", "US"],
-    "deepLinkSchemes": {
-      "android": "https://www.disneyplus.com/browse/entity-",
-      "ios": "disneyplus://",
-      "web": "https://www.disneyplus.com/browse/entity-"
+    "regions": ["US", "ZA"],
+    "tmdbProviderIds": {
+      "US": [8],
+      "ZA": [8]
+    },
+    "tmdbProviderNames": {
+      "US": ["Netflix"],
+      "ZA": ["Netflix"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.netflix.com/search?q={query}",
+      "ios": "https://www.netflix.com/search?q={query}",
+      "android": "https://www.netflix.com/search?q={query}"
     }
   },
   {
     "id": "prime",
     "name": "Prime Video",
+    "shortName": "Prime",
     "logo": "assets/streamers/prime.png",
-    "regions": ["ZA", "US"],
-    "deepLinkSchemes": {
-      "android": "https://www.primevideo.com/detail/",
-      "ios": "https://www.primevideo.com/detail/",
-      "web": "https://www.primevideo.com/detail/"
+    "regions": ["US", "ZA"],
+    "tmdbProviderIds": {
+      "US": [9],
+      "ZA": [9]
+    },
+    "tmdbProviderNames": {
+      "US": ["Amazon Prime Video"],
+      "ZA": ["Amazon Prime Video"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.primevideo.com/search/ref=atv_nb_sr?phrase={query}",
+      "ios": "https://www.primevideo.com/search/ref=atv_nb_sr?phrase={query}",
+      "android": "https://www.primevideo.com/search/ref=atv_nb_sr?phrase={query}"
     }
   },
   {
-    "id": "max",
-    "name": "Max",
-    "logo": "assets/streamers/max.png",
-    "regions": ["US"],
-    "deepLinkSchemes": {
-      "android": "https://play.max.com/show/",
-      "ios": "https://play.max.com/show/",
-      "web": "https://play.max.com/show/"
+    "id": "disney",
+    "name": "Disney+",
+    "shortName": "Disney+",
+    "logo": "assets/streamers/disney.png",
+    "regions": ["US", "ZA"],
+    "tmdbProviderIds": {
+      "US": [337],
+      "ZA": [337]
+    },
+    "tmdbProviderNames": {
+      "US": ["Disney Plus"],
+      "ZA": ["Disney Plus"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.disneyplus.com/search/{query}",
+      "ios": "https://www.disneyplus.com/search/{query}",
+      "android": "https://www.disneyplus.com/search/{query}"
     }
   },
   {
     "id": "appletv",
     "name": "Apple TV+",
+    "shortName": "Apple TV+",
     "logo": "assets/streamers/appletv.png",
-    "regions": ["ZA", "US"],
-    "deepLinkSchemes": {
-      "android": "https://tv.apple.com/show/",
-      "ios": "videos://tv.apple.com/show/",
-      "web": "https://tv.apple.com/show/"
+    "regions": ["US", "ZA"],
+    "tmdbProviderIds": {
+      "US": [350],
+      "ZA": [350]
+    },
+    "tmdbProviderNames": {
+      "US": ["Apple TV Plus"],
+      "ZA": ["Apple TV Plus"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://tv.apple.com/search?term={query}",
+      "ios": "https://tv.apple.com/search?term={query}",
+      "android": "https://tv.apple.com/search?term={query}"
     }
+  },
+  {
+    "id": "max",
+    "name": "Max",
+    "shortName": "Max",
+    "logo": "assets/streamers/max.png",
+    "regions": ["US"],
+    "tmdbProviderIds": {
+      "US": [1899, 384]
+    },
+    "tmdbProviderNames": {
+      "US": ["Max", "HBO Max"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://play.max.com/search?q={query}",
+      "ios": "https://play.max.com/search?q={query}",
+      "android": "https://play.max.com/search?q={query}"
+    },
+    "notes": "Uses both Max and legacy HBO Max TMDB provider IDs."
   },
   {
     "id": "hulu",
     "name": "Hulu",
+    "shortName": "Hulu",
     "logo": "assets/streamers/hulu.png",
     "regions": ["US"],
-    "deepLinkSchemes": {
-      "android": "hulu://",
-      "ios": "hulu://",
-      "web": "https://www.hulu.com/series/"
-    }
-  },
-  {
-    "id": "paramount",
-    "name": "Paramount+",
-    "logo": "assets/streamers/paramount.png",
-    "regions": ["US"],
-    "deepLinkSchemes": {
-      "android": "https://www.paramountplus.com/shows/",
-      "ios": "https://www.paramountplus.com/shows/",
-      "web": "https://www.paramountplus.com/shows/"
+    "tmdbProviderIds": {
+      "US": [15]
+    },
+    "tmdbProviderNames": {
+      "US": ["Hulu"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.hulu.com/search?q={query}",
+      "ios": "https://www.hulu.com/search?q={query}",
+      "android": "https://www.hulu.com/search?q={query}"
     }
   },
   {
     "id": "peacock",
     "name": "Peacock",
+    "shortName": "Peacock",
     "logo": "assets/streamers/peacock.png",
     "regions": ["US"],
-    "deepLinkSchemes": {
-      "android": "https://www.peacocktv.com/watch/asset/",
-      "ios": "https://www.peacocktv.com/watch/asset/",
-      "web": "https://www.peacocktv.com/watch/asset/"
+    "tmdbProviderIds": {
+      "US": [386]
+    },
+    "tmdbProviderNames": {
+      "US": ["Peacock", "Peacock Premium", "Peacock Premium Plus"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.peacocktv.com/search?q={query}",
+      "ios": "https://www.peacocktv.com/search?q={query}",
+      "android": "https://www.peacocktv.com/search?q={query}"
+    }
+  },
+  {
+    "id": "paramount",
+    "name": "Paramount+",
+    "shortName": "Paramount+",
+    "logo": "assets/streamers/paramount.png",
+    "regions": ["US"],
+    "tmdbProviderIds": {
+      "US": [531, 2303, 2304]
+    },
+    "tmdbProviderNames": {
+      "US": ["Paramount Plus", "Paramount Plus Premium", "Paramount Plus Basic with Ads"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.paramountplus.com/search/?term={query}",
+      "ios": "https://www.paramountplus.com/search/?term={query}",
+      "android": "https://www.paramountplus.com/search/?term={query}"
+    }
+  },
+  {
+    "id": "showtime",
+    "name": "Showtime",
+    "shortName": "Showtime",
+    "logo": "assets/streamers/showtime.png",
+    "regions": ["US"],
+    "tmdbProviderIds": {
+      "US": [1770]
+    },
+    "tmdbProviderNames": {
+      "US": ["Paramount+ with Showtime"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.paramountplus.com/search/?term={query}",
+      "ios": "https://www.paramountplus.com/search/?term={query}",
+      "android": "https://www.paramountplus.com/search/?term={query}"
+    },
+    "notes": "TMDB surfaces Showtime inside Paramount+ with Showtime in US watch-provider data."
+  },
+  {
+    "id": "starz",
+    "name": "Starz",
+    "shortName": "Starz",
+    "logo": "assets/streamers/starz.png",
+    "regions": ["US"],
+    "tmdbProviderIds": {
+      "US": [43]
+    },
+    "tmdbProviderNames": {
+      "US": ["Starz"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.starz.com/us/en/search?q={query}",
+      "ios": "https://www.starz.com/us/en/search?q={query}",
+      "android": "https://www.starz.com/us/en/search?q={query}"
     }
   },
   {
     "id": "youtube",
     "name": "YouTube",
+    "shortName": "YouTube",
     "logo": "assets/streamers/youtube.png",
-    "regions": ["ZA", "US"],
-    "deepLinkSchemes": {
-      "android": "vnd.youtube://results?search_query=",
-      "ios": "youtube://results?search_query=",
-      "web": "https://www.youtube.com/results?search_query="
+    "regions": ["US", "ZA"],
+    "tmdbProviderIds": {
+      "US": [192],
+      "ZA": [192]
+    },
+    "tmdbProviderNames": {
+      "US": ["YouTube"],
+      "ZA": ["YouTube"]
+    },
+    "searchUrlTemplates": {
+      "web": "https://www.youtube.com/results?search_query={query}",
+      "ios": "https://www.youtube.com/results?search_query={query}",
+      "android": "https://www.youtube.com/results?search_query={query}"
     }
   }
 ]
