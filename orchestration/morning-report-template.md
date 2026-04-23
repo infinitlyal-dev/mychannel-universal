@@ -30,7 +30,7 @@
 
 - **Backend reachable:** `curl https://mychannel-api.vercel.app/api/health` → `{status + body}`
 - **App → backend wiring:** app points at `{API_BASE from shared/constants.ts}` = `{actual URL grep result from /app/}`
-- **App → catalogue wiring:** app consumes `/data/catalogue.json` (not mock) — **Evidence:** `{grep result}`
+- **App → library wiring:** app consumes `/api/library` (no bundled catalogue) — **Evidence:** `{grep result}`
 - **Type contract drift:** `tsc --noEmit` across /shared + all three workstreams — `{pass | fail + line}`
 
 ## 3. Smoke test results

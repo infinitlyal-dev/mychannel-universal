@@ -59,12 +59,10 @@ npx cap run android   # Android emulator
 npx cap run ios       # iOS simulator (macOS only)
 ```
 
-### Data (Workstream C)
-```bash
-cd data/
-npm install
-npm run build     # regenerates catalogue.json from TMDB
-```
+### Data (`/data`)
+Metadata only: TMDB genre mapping, streamer provider manifest, QA fixtures.
+No build step. No bundled catalogue — product loads titles from the live
+library API. See `/shared/acceptance/data-migration.md`.
 
 *Note: the detailed `run` commands above assume the layout described in
 INTERFACES.md. Cross-check `/shared/INTERFACES.md` for authoritative per-
