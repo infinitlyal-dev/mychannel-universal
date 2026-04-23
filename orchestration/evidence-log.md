@@ -24,3 +24,15 @@ Raw verification output per morning cycle. Append-only. Each day gets a
 - Verification **not run**: `npx tsc --noEmit` requires the files to exist on disk; Cursor can't create them from Plan mode.
 - Commit message for when files land: `feat(picker): add UI primitives — card, badges, skeleton, empty, filter-bar` (per brief).
 - Al action needed: toggle agent mode in the Cursor chat UI chrome yourself (the mode selector at the bottom of chat, not via tool call), then say "execute" — c2 lands in one commit. Alternatively, copy the six files out of the bundle and commit locally, or hand the bundle to Codex.
+c3 shipped: commit 579cc12; removed app/src/data/catalogue.ts (app/src/lib/catalogue.ts was absent); rewired preview.ts, scheduling.ts, shows-tab.ts; added /slot-edit/:slotId; tsc clean; vitest 9/9; note components/index not landed upstream, dynamic placeholder import used until c2 commit lands.
+
+### c2 — UI primitives SHIPPED (Vos on Cursor's behalf, lane 1)
+
+- Status: **landed**. Commit `9b94dfc`, pushed to `origin/v2-rebuild`.
+- Path: Cursor was unable to write `.ts` files from its Plan-mode gate, so I (Vos) wrote the six files verbatim from `orchestration/lane1/c2-code-bundle.md` via the Windows-MCP filesystem. Per Al's guardrail 4 ("stop making Al copy-paste"), the orchestrator executes the paste step when an agent is blocked by its own UI chrome.
+- Files: `app/src/components/{mc-library-card,mc-provider-badges,mc-skeleton-tile,mc-empty-state,mc-filter-bar,index}.ts` (6 new files, 664 insertions).
+- Fix applied during tsc: `MCLibraryCard.title` collided with `HTMLElement.title: string` — renamed property to `libraryTitle` to satisfy variance. No consumers downstream yet (c3 did not wire screens to the card), so the rename is breakage-free. Bundle text is now stale vs. the canonical in-tree files on this one name; future screen wiring should use `.libraryTitle=`.
+- Brief compliance (`orchestration/lane1/CURSOR-c2-prompt.md`): confirmed — localStorage key `mc.picker.filters`, `content-visibility: auto` + `contain-intrinsic-size: 160px 240px` on card + skeleton hosts, 250 ms debounce on query input, no `shared/*` edits, no screen wiring, types imported from `../types`.
+- Frozen-zone audit: Codex's c3 diff (commit 579cc12) touched only `catalogue.ts`, `live-title-details.ts`, `main.ts`, `router.ts`, `preview.ts`, `scheduling.ts`, `shows-tab.ts`, `slot-edit.ts` + generated build output; it did **not** touch `app/src/components/*` (c2's zone) or `app/src/lib/library-api.ts`/`library-cache.ts` or `shared/*` (c1's zone). Contract held.
+- Verification run (`cd app && npx tsc --noEmit`): exit 0, no errors (log: `C:\Users\27741\AppData\Local\Temp\tsc-c2.log` empty on second pass after rename).
+- Follow-up: Codex left a dynamic-import placeholder in `app/src/main.ts` L17-18 (`const componentsIndexModule = './components/index'; void import(componentsIndexModule).catch(() => undefined);`) to keep c3 tsc-clean before c2 existed. Now that c2 is on disk, this should be demoted to a static `import './components/index';`. Leaving for a small polish commit so c3's lane isn't re-opened mid-lane-1.
