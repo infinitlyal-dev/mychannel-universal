@@ -1,6 +1,7 @@
 import { html } from 'lit-html';
 import type { RouteContext } from '../router';
 import { scheduleEntriesToNotifications } from '../lib/notifications';
+import { resolveLiveTitles } from '../lib/live-title-details';
 
 let activeCtx: RouteContext | null = null;
 
@@ -8,9 +9,13 @@ class McSchedulingRun extends HTMLElement {
   connectedCallback(): void {
     const ctx = activeCtx;
     if (!ctx) return;
-    const shows = ctx.catalogue.filter((s) => ctx.state.shows.includes(s.id));
+    const { titles: shows, loading } = resolveLiveTitles(ctx.state, ctx.redraw);
     const bar = this.querySelector('mc-progress-bar') as HTMLElement | null;
     const label = this.querySelector('[data-label]') as HTMLElement | null;
+    if (loading && !shows.length) {
+      if (label) label.textContent = 'Loading titles…';
+      return;
+    }
     const start = performance.now();
     const finalize = async () => {
       try {

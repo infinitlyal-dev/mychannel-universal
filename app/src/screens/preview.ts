@@ -3,6 +3,7 @@ import type { RouteContext } from '../router';
 import { buildSchedule, scheduleStats, type SlotPick } from '../lib/scheduler';
 import type { ScheduleEntry } from '../types';
 import { clearDraftSlots, loadDraftSlotsJson } from '../lib/web-session';
+import { resolveLiveTitles } from '../lib/live-title-details';
 
 let swapTarget: ScheduleEntry | null = null;
 
@@ -24,7 +25,7 @@ function readPicks(ctx: RouteContext): SlotPick[] {
 
 export function renderPreview(ctx: RouteContext) {
   const picks = readPicks(ctx);
-  const shows = ctx.catalogue.filter((s) => ctx.state.shows.includes(s.id));
+  const { titles: shows, loading } = resolveLiveTitles(ctx.state, ctx.redraw);
   const base = buildSchedule(shows, picks);
   const schedule = base.map((e) => {
     const k = slotKey(e);
@@ -54,6 +55,7 @@ export function renderPreview(ctx: RouteContext) {
     <div class="screen layout">
       <div class="layout__body">
         <h2>Wizard 4/4 — Preview</h2>
+        ${loading && !shows.length ? html`<p class="muted">Loading titles…</p>` : null}
         <p class="muted">Slots: ${stats.slots} · Shows used: ${stats.uniqueShows} · Weekly minutes ~ ${stats.weeklyMinutes}</p>
         <div style="display:grid;gap:6px;margin-top:12px;">
           ${schedule.map(

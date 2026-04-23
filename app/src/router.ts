@@ -14,6 +14,7 @@ import { renderWeek } from './screens/week';
 import { renderShowsTab } from './screens/shows-tab';
 import { renderSettings } from './screens/settings';
 import { renderAbout } from './screens/about';
+import { renderSlotEdit } from './screens/slot-edit';
 import type { SlotPick } from './lib/scheduler';
 
 export type Session = {
@@ -38,13 +39,19 @@ function normalizeHash(): string {
 }
 
 export function navigate(hash: string): void {
-  window.location.hash = `#/${hash}`;
+  window.location.hash = `#/${hash.replace(/^\/+/, '')}`;
 }
 
 export function mountRouter(ctx: RouteContext, outlet: HTMLElement): () => void {
   const draw = (): void => {
     const route = normalizeHash();
     let view: TemplateResult;
+    if (route.startsWith('slot-edit/')) {
+      const slotId = decodeURIComponent(route.slice('slot-edit/'.length));
+      view = renderSlotEdit(ctx, slotId);
+      render(view, outlet);
+      return;
+    }
     switch (route) {
       case 'splash':
         view = renderSplash(ctx);
@@ -75,6 +82,7 @@ export function mountRouter(ctx: RouteContext, outlet: HTMLElement): () => void 
         view = renderScheduling(ctx);
         break;
       case 'now':
+      case 'channel':
         view = renderChannel(ctx);
         break;
       case 'week':

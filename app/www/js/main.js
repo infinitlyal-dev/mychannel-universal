@@ -1294,19 +1294,95 @@ var LocalNotifications = registerPlugin("LocalNotifications", {
   web: () => Promise.resolve().then(() => (init_web2(), web_exports2)).then((m2) => new m2.LocalNotificationsWeb())
 });
 
-// src/data/catalogue.ts
-function dataUrl(path) {
-  return new URL(path, document.baseURI).toString();
+// ../shared/constants.ts
+var API_BASE = "/api";
+
+// src/lib/library-api.ts
+var LibraryApiError = class extends Error {
+  code;
+  status;
+  constructor(code, message, status) {
+    super(message);
+    this.name = "LibraryApiError";
+    this.code = code;
+    this.status = status;
+  }
+};
+async function getJson(url) {
+  let response;
+  try {
+    response = await fetch(url, {
+      headers: { accept: "application/json" },
+      credentials: "same-origin"
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "network error";
+    throw new LibraryApiError("network_error", message);
+  }
+  let body;
+  try {
+    body = await response.json();
+  } catch {
+    throw new LibraryApiError("invalid_json", "response was not valid JSON", response.status);
+  }
+  const data = body;
+  if (!response.ok || !data?.success) {
+    const code = data?.error?.code ?? `http_${response.status}`;
+    const message = data?.error?.message ?? response.statusText ?? "request failed";
+    throw new LibraryApiError(code, message, response.status);
+  }
+  return data;
 }
-async function loadStreamers() {
-  const res = await fetch(dataUrl("data/streamers.json"));
-  if (!res.ok) throw new Error("streamers load failed");
-  return await res.json();
+function fetchProviders(region) {
+  const url = region ? `${API_BASE}/library/providers?region=${encodeURIComponent(region)}` : `${API_BASE}/library/providers`;
+  return getJson(url);
 }
-async function loadCatalogue() {
-  const res = await fetch(dataUrl("data/catalogue.json"));
-  if (!res.ok) throw new Error("catalogue load failed");
-  return await res.json();
+function fetchTitle(tmdbType, tmdbId) {
+  return getJson(`${API_BASE}/title/${tmdbType}/${tmdbId}`);
+}
+
+// src/lib/library-cache.ts
+var TITLE_DETAIL_CAP = 64;
+var providersByRegion = /* @__PURE__ */ new Map();
+var providersAny = null;
+var titleDetails = /* @__PURE__ */ new Map();
+function hashTitleKey(tmdbType, tmdbId) {
+  return `${tmdbType}:${tmdbId}`;
+}
+function touch(map, key) {
+  if (!map.has(key)) return void 0;
+  const value = map.get(key);
+  map.delete(key);
+  map.set(key, value);
+  return value;
+}
+function setWithCap(map, key, value, cap) {
+  if (map.has(key)) map.delete(key);
+  map.set(key, value);
+  while (map.size > cap) {
+    const oldest = map.keys().next().value;
+    if (oldest === void 0) break;
+    map.delete(oldest);
+  }
+}
+function getCachedProviders(region) {
+  if (region) {
+    return providersByRegion.get(region);
+  }
+  return providersAny ?? void 0;
+}
+function setCachedProviders(region, providers) {
+  if (region) {
+    providersByRegion.set(region, providers);
+  } else {
+    providersAny = providers;
+  }
+}
+function getCachedTitleDetail(tmdbType, tmdbId) {
+  return touch(titleDetails, hashTitleKey(tmdbType, tmdbId));
+}
+function setCachedTitleDetail(tmdbType, tmdbId, detail) {
+  setWithCap(titleDetails, hashTitleKey(tmdbType, tmdbId), detail, TITLE_DETAIL_CAP);
 }
 
 // src/screens/splash.ts
@@ -1568,50 +1644,410 @@ function renderTimes(ctx) {
   `;
 }
 
+// src/lib/deep-link.ts
+init_dist();
+
+// ../data/streamers.json
+var streamers_default = [
+  {
+    id: "netflix",
+    name: "Netflix",
+    shortName: "Netflix",
+    logo: "assets/streamers/netflix.png",
+    regions: ["US", "ZA"],
+    tmdbProviderIds: {
+      US: [8],
+      ZA: [8]
+    },
+    tmdbProviderNames: {
+      US: ["Netflix", "Netflix Standard with Ads"],
+      ZA: ["Netflix", "Netflix Standard with Ads"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.netflix.com/search?q={query}",
+      ios: "https://www.netflix.com/search?q={query}",
+      android: "https://www.netflix.com/search?q={query}"
+    }
+  },
+  {
+    id: "prime",
+    name: "Prime Video",
+    shortName: "Prime",
+    logo: "assets/streamers/prime.png",
+    regions: ["US", "ZA"],
+    tmdbProviderIds: {
+      US: [9],
+      ZA: [9]
+    },
+    tmdbProviderNames: {
+      US: ["Amazon Prime Video", "Prime Video", "Amazon Prime Video with Ads"],
+      ZA: ["Amazon Prime Video", "Prime Video", "Amazon Prime Video with Ads"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.primevideo.com/search/ref=atv_nb_sr?phrase={query}",
+      ios: "https://www.primevideo.com/search/ref=atv_nb_sr?phrase={query}",
+      android: "https://www.primevideo.com/search/ref=atv_nb_sr?phrase={query}"
+    }
+  },
+  {
+    id: "disney",
+    name: "Disney+",
+    shortName: "Disney+",
+    logo: "assets/streamers/disney.png",
+    regions: ["US", "ZA"],
+    tmdbProviderIds: {
+      US: [337],
+      ZA: [337]
+    },
+    tmdbProviderNames: {
+      US: ["Disney Plus", "Disney+"],
+      ZA: ["Disney Plus", "Disney+"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.disneyplus.com/search/{query}",
+      ios: "https://www.disneyplus.com/search/{query}",
+      android: "https://www.disneyplus.com/search/{query}"
+    }
+  },
+  {
+    id: "appletv",
+    name: "Apple TV+",
+    shortName: "Apple TV+",
+    logo: "assets/streamers/appletv.png",
+    regions: ["US", "ZA"],
+    tmdbProviderIds: {
+      US: [350],
+      ZA: [350]
+    },
+    tmdbProviderNames: {
+      US: ["Apple TV Plus", "Apple TV+"],
+      ZA: ["Apple TV Plus", "Apple TV+"]
+    },
+    searchUrlTemplates: {
+      web: "https://tv.apple.com/search?term={query}",
+      ios: "https://tv.apple.com/search?term={query}",
+      android: "https://tv.apple.com/search?term={query}"
+    }
+  },
+  {
+    id: "max",
+    name: "Max",
+    shortName: "Max",
+    logo: "assets/streamers/max.png",
+    regions: ["US"],
+    tmdbProviderIds: {
+      US: [1899, 384]
+    },
+    tmdbProviderNames: {
+      US: ["Max", "Max Amazon Channel", "HBO Max", "HBO Max Amazon Channel"]
+    },
+    searchUrlTemplates: {
+      web: "https://play.max.com/search?q={query}",
+      ios: "https://play.max.com/search?q={query}",
+      android: "https://play.max.com/search?q={query}"
+    },
+    notes: "Uses both Max and legacy HBO Max TMDB provider IDs."
+  },
+  {
+    id: "hulu",
+    name: "Hulu",
+    shortName: "Hulu",
+    logo: "assets/streamers/hulu.png",
+    regions: ["US"],
+    tmdbProviderIds: {
+      US: [15]
+    },
+    tmdbProviderNames: {
+      US: ["Hulu", "Hulu (With Ads)", "Hulu Amazon Channel"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.hulu.com/search?q={query}",
+      ios: "https://www.hulu.com/search?q={query}",
+      android: "https://www.hulu.com/search?q={query}"
+    }
+  },
+  {
+    id: "peacock",
+    name: "Peacock",
+    shortName: "Peacock",
+    logo: "assets/streamers/peacock.png",
+    regions: ["US"],
+    tmdbProviderIds: {
+      US: [386]
+    },
+    tmdbProviderNames: {
+      US: ["Peacock", "Peacock Premium", "Peacock Premium Plus", "Peacock Premium with Ads"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.peacocktv.com/search?q={query}",
+      ios: "https://www.peacocktv.com/search?q={query}",
+      android: "https://www.peacocktv.com/search?q={query}"
+    }
+  },
+  {
+    id: "paramount",
+    name: "Paramount+",
+    shortName: "Paramount+",
+    logo: "assets/streamers/paramount.png",
+    regions: ["US"],
+    tmdbProviderIds: {
+      US: [531, 2303, 2304]
+    },
+    tmdbProviderNames: {
+      US: ["Paramount Plus", "Paramount+", "Paramount Plus Premium", "Paramount Plus Basic with Ads", "Paramount+ Amazon Channel"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.paramountplus.com/search/?term={query}",
+      ios: "https://www.paramountplus.com/search/?term={query}",
+      android: "https://www.paramountplus.com/search/?term={query}"
+    }
+  },
+  {
+    id: "showtime",
+    name: "Showtime",
+    shortName: "Showtime",
+    logo: "assets/streamers/showtime.png",
+    regions: ["US"],
+    tmdbProviderIds: {
+      US: [1770]
+    },
+    tmdbProviderNames: {
+      US: ["Paramount+ with Showtime", "Showtime", "Showtime Amazon Channel", "Showtime Roku Premium Channel"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.paramountplus.com/search/?term={query}",
+      ios: "https://www.paramountplus.com/search/?term={query}",
+      android: "https://www.paramountplus.com/search/?term={query}"
+    },
+    notes: "TMDB surfaces Showtime inside Paramount+ with Showtime in US watch-provider data."
+  },
+  {
+    id: "starz",
+    name: "Starz",
+    shortName: "Starz",
+    logo: "assets/streamers/starz.png",
+    regions: ["US"],
+    tmdbProviderIds: {
+      US: [43]
+    },
+    tmdbProviderNames: {
+      US: ["Starz", "Starz Amazon Channel", "Starz Roku Premium Channel"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.starz.com/us/en/search?q={query}",
+      ios: "https://www.starz.com/us/en/search?q={query}",
+      android: "https://www.starz.com/us/en/search?q={query}"
+    }
+  },
+  {
+    id: "youtube",
+    name: "YouTube",
+    shortName: "YouTube",
+    logo: "assets/streamers/youtube.png",
+    regions: ["US", "ZA"],
+    tmdbProviderIds: {
+      US: [192],
+      ZA: [192]
+    },
+    tmdbProviderNames: {
+      US: ["YouTube", "YouTube Premium"],
+      ZA: ["YouTube", "YouTube Premium"]
+    },
+    searchUrlTemplates: {
+      web: "https://www.youtube.com/results?search_query={query}",
+      ios: "https://www.youtube.com/results?search_query={query}",
+      android: "https://www.youtube.com/results?search_query={query}"
+    }
+  }
+];
+
+// src/lib/deep-link.ts
+var REGISTRY = streamers_default;
+var REGISTRY_BY_ID = new Map(REGISTRY.map((streamer) => [streamer.id, streamer]));
+function buildSearchQuery(title) {
+  return title.year ? `${title.title} ${title.year}` : title.title;
+}
+function buildStreamerSearchUrls(title, streamerId) {
+  const streamer = REGISTRY_BY_ID.get(streamerId);
+  if (!streamer) {
+    return {};
+  }
+  const query = encodeURIComponent(buildSearchQuery(title));
+  const platforms = ["web", "ios", "android"];
+  return Object.fromEntries(
+    platforms.flatMap((platform) => {
+      const template = streamer.searchUrlTemplates[platform] ?? streamer.searchUrlTemplates.web;
+      return template ? [[platform, template.replace("{query}", query)]] : [];
+    })
+  );
+}
+function pickPlatform() {
+  const platform = Capacitor.getPlatform();
+  if (platform === "android" || platform === "ios") {
+    return platform;
+  }
+  return "web";
+}
+function buildDeepLink(show, streamer, platform) {
+  const urls = buildStreamerSearchUrls(show, streamer);
+  return urls[platform] ?? urls.web;
+}
+async function fallbackToWeb(show, streamer) {
+  const web = buildStreamerSearchUrls(show, streamer).web;
+  if (web) {
+    await AppLauncher.openUrl({ url: web });
+  }
+}
+async function launchShow(show, streamer) {
+  const platform = pickPlatform();
+  const link = buildDeepLink(show, streamer, platform);
+  if (!link) {
+    await fallbackToWeb(show, streamer);
+    return;
+  }
+  const { value: canOpen } = await AppLauncher.canOpenUrl({ url: link });
+  if (canOpen) {
+    await AppLauncher.openUrl({ url: link });
+    return;
+  }
+  await fallbackToWeb(show, streamer);
+}
+
 // src/lib/scheduler.ts
-function parseMinutes(t2) {
-  const [h2, m2] = t2.split(":").map(Number);
-  return h2 * 60 + m2;
+function parseMinutes(value) {
+  const [hours, minutes] = value.split(":").map(Number);
+  return hours * 60 + minutes;
 }
-function formatMinutes(total) {
-  const h2 = Math.floor(total / 60) % 24;
-  const m2 = Math.floor(total % 60);
-  return `${String(h2).padStart(2, "0")}:${String(m2).padStart(2, "0")}`;
-}
-function clampEndToWindow(start, windowEnd, runtimeMinutes) {
-  const startM = parseMinutes(start);
+function clampEndToWindow(startTime, windowEnd, runtimeMinutes) {
+  const start = parseMinutes(startTime);
   const endCap = parseMinutes(windowEnd);
-  const naturalEnd = startM + runtimeMinutes;
-  return formatMinutes(Math.min(naturalEnd, endCap));
+  const naturalEnd = start + runtimeMinutes;
+  const clamped = Math.min(naturalEnd, endCap);
+  const hours = Math.floor(clamped / 60) % 24;
+  const minutes = clamped % 60;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
 }
 function buildSchedule(shows, slots) {
-  if (!shows.length || !slots.length) return [];
-  const orderedSlots = [...slots].sort((a2, b2) => {
-    if (a2.dayOfWeek !== b2.dayOfWeek) return a2.dayOfWeek - b2.dayOfWeek;
-    return a2.band.localeCompare(b2.band);
-  });
-  return orderedSlots.map((slot, idx) => {
-    const show = shows[idx % shows.length];
+  if (!shows.length || !slots.length) {
+    return [];
+  }
+  return slots.slice().sort((left, right) => {
+    if (left.dayOfWeek !== right.dayOfWeek) {
+      return left.dayOfWeek - right.dayOfWeek;
+    }
+    return left.band.localeCompare(right.band);
+  }).map((slot, index) => {
+    const show = shows[index % shows.length];
     const { startTime, endTime } = bandWindow(slot.band);
-    const computedEnd = clampEndToWindow(startTime, endTime, show.runtimeMinutes);
     return {
+      id: `slot-${slot.dayOfWeek}-${startTime}`,
       showId: show.id,
+      titleId: show.id,
+      providerId: show.providers?.US?.[0] ?? null,
+      searchUrls: {},
       dayOfWeek: slot.dayOfWeek,
       startTime,
-      endTime: computedEnd,
+      endTime: clampEndToWindow(startTime, endTime, show.runtimeMinutes ?? 60),
       enabled: true
     };
   });
 }
-function scheduleStats(schedule, shows) {
-  const ids = new Set(schedule.map((s2) => s2.showId));
-  let weeklyMinutes = 0;
-  for (const e2 of schedule) {
-    const show = shows.find((x2) => x2.id === e2.showId);
-    const rt = show?.runtimeMinutes ?? 0;
-    weeklyMinutes += Math.max(0, parseMinutes(e2.endTime) - parseMinutes(e2.startTime)) || rt;
+function scheduleStats(schedule, shows = []) {
+  const ids = new Set(
+    schedule.map((entry) => entry.titleId ?? entry.showId).filter((value) => Boolean(value))
+  );
+  const weeklyMinutes = schedule.reduce((total, entry) => {
+    const duration = parseMinutes(entry.endTime) - parseMinutes(entry.startTime);
+    if (duration > 0) {
+      return total + duration;
+    }
+    const legacyShowId = "showId" in entry ? entry.showId : void 0;
+    const fallback = shows.find((show) => show.id === legacyShowId)?.runtimeMinutes ?? 0;
+    return total + fallback;
+  }, 0);
+  return {
+    slots: schedule.length,
+    enabledSlots: schedule.filter((entry) => entry.enabled).length,
+    titlesScheduled: ids.size,
+    uniqueShows: ids.size,
+    weeklyMinutes
+  };
+}
+
+// src/lib/live-title-details.ts
+var pendingTitleLoads = /* @__PURE__ */ new Set();
+function parseTitleId(id) {
+  const match = /^tmdb-(movie|tv)-(\d+)$/.exec(id);
+  if (!match) return null;
+  return {
+    tmdbType: match[1],
+    tmdbId: Number(match[2])
+  };
+}
+function toShow(source) {
+  return {
+    id: source.id,
+    tmdbId: source.tmdbId,
+    tmdbType: source.tmdbType,
+    title: source.title,
+    originalTitle: "originalTitle" in source ? source.originalTitle : source.title,
+    year: source.year,
+    originalLanguage: "originalLanguage" in source ? source.originalLanguage : "en",
+    overview: "overview" in source ? source.overview : "",
+    posterPath: "posterPath" in source ? source.posterPath : null,
+    posterUrl: source.posterUrl ?? null,
+    backdropPath: "backdropPath" in source ? source.backdropPath : null,
+    backdropUrl: source.backdropUrl ?? null,
+    releaseDate: "releaseDate" in source ? source.releaseDate : null,
+    genreIds: "genreIds" in source ? source.genreIds : [],
+    genres: "genres" in source ? source.genres : [],
+    popularity: "popularity" in source ? source.popularity : 0,
+    voteAverage: "voteAverage" in source ? source.voteAverage : 0,
+    voteCount: "voteCount" in source ? source.voteCount : 0,
+    providerBadges: "providerBadges" in source ? source.providerBadges : [],
+    runtimeMinutes: "runtimeMinutes" in source ? source.runtimeMinutes : null,
+    providers: {},
+    deepLinks: {}
+  };
+}
+function titleIdsForState(state) {
+  const ids = state.shows.length > 0 ? state.shows : state.selectedTitles.map((title) => title.id);
+  return [...new Set(ids)];
+}
+function fetchMissingTitle(id, parsed, redraw) {
+  const key = `${parsed.tmdbType}:${parsed.tmdbId}`;
+  if (pendingTitleLoads.has(key)) return;
+  pendingTitleLoads.add(key);
+  void fetchTitle(parsed.tmdbType, parsed.tmdbId).then((response) => {
+    if (response.item) {
+      setCachedTitleDetail(parsed.tmdbType, parsed.tmdbId, response.item);
+    }
+  }).catch(() => {
+  }).finally(() => {
+    pendingTitleLoads.delete(key);
+    redraw();
+  });
+}
+function resolveLiveTitles(state, redraw) {
+  const persisted = new Map(state.selectedTitles.map((title) => [title.id, title]));
+  const titles = [];
+  let loading = false;
+  for (const id of titleIdsForState(state)) {
+    const parsed = parseTitleId(id);
+    if (!parsed) continue;
+    const cached = getCachedTitleDetail(parsed.tmdbType, parsed.tmdbId);
+    if (cached) {
+      titles.push(toShow(cached));
+      continue;
+    }
+    const fallback = persisted.get(id);
+    if (fallback) {
+      titles.push(toShow(fallback));
+    }
+    loading = true;
+    fetchMissingTitle(id, parsed, redraw);
   }
-  return { slots: schedule.length, uniqueShows: ids.size, weeklyMinutes };
+  return { titles, loading };
 }
 
 // src/screens/preview.ts
@@ -1631,7 +2067,7 @@ function readPicks(ctx) {
 }
 function renderPreview(ctx) {
   const picks = readPicks(ctx);
-  const shows = ctx.catalogue.filter((s2) => ctx.state.shows.includes(s2.id));
+  const { titles: shows, loading } = resolveLiveTitles(ctx.state, ctx.redraw);
   const base = buildSchedule(shows, picks);
   const schedule = base.map((e2) => {
     const k2 = slotKey(e2);
@@ -1661,6 +2097,7 @@ function renderPreview(ctx) {
     <div class="screen layout">
       <div class="layout__body">
         <h2>Wizard 4/4 — Preview</h2>
+        ${loading && !shows.length ? b`<p class="muted">Loading titles…</p>` : null}
         <p class="muted">Slots: ${stats.slots} · Shows used: ${stats.uniqueShows} · Weekly minutes ~ ${stats.weeklyMinutes}</p>
         <div style="display:grid;gap:6px;margin-top:12px;">
           ${schedule.map(
@@ -1728,32 +2165,6 @@ function renderNotify(ctx) {
   `;
 }
 
-// src/lib/deep-link.ts
-init_dist();
-function pickPlatform() {
-  const p2 = Capacitor.getPlatform();
-  if (p2 === "android" || p2 === "ios") return p2;
-  return "web";
-}
-function buildDeepLink(show, streamer, platform) {
-  return show.deepLinks?.[streamer]?.[platform] ?? show.deepLinks?.[streamer]?.web;
-}
-async function fallbackToWeb(show, streamer) {
-  const web = show.deepLinks?.[streamer]?.web;
-  if (web) await AppLauncher.openUrl({ url: web });
-}
-async function launchShow(show, streamer) {
-  const platform = pickPlatform();
-  const link = buildDeepLink(show, streamer, platform);
-  if (!link) {
-    await fallbackToWeb(show, streamer);
-    return;
-  }
-  const { value: canOpen } = await AppLauncher.canOpenUrl({ url: link });
-  if (canOpen) await AppLauncher.openUrl({ url: link });
-  else await fallbackToWeb(show, streamer);
-}
-
 // src/lib/notifications.ts
 function nextOccurrence(dayOfWeek, timeHHmm) {
   const now = /* @__PURE__ */ new Date();
@@ -1807,9 +2218,13 @@ var McSchedulingRun = class extends HTMLElement {
   connectedCallback() {
     const ctx = activeCtx;
     if (!ctx) return;
-    const shows = ctx.catalogue.filter((s2) => ctx.state.shows.includes(s2.id));
+    const { titles: shows, loading } = resolveLiveTitles(ctx.state, ctx.redraw);
     const bar = this.querySelector("mc-progress-bar");
     const label = this.querySelector("[data-label]");
+    if (loading && !shows.length) {
+      if (label) label.textContent = "Loading titles\u2026";
+      return;
+    }
     const start = performance.now();
     const finalize = async () => {
       try {
@@ -2054,9 +2469,12 @@ function renderWeek(ctx) {
 
 // src/screens/shows-tab.ts
 function renderShowsTab(ctx) {
-  const shows = ctx.catalogue.filter((s2) => ctx.state.shows.includes(s2.id));
+  const { titles: shows, loading } = resolveLiveTitles(ctx.state, ctx.redraw);
   const remove = async (id) => {
-    await ctx.patch({ shows: ctx.state.shows.filter((x2) => x2 !== id) });
+    await ctx.patch({
+      shows: ctx.state.shows.filter((x2) => x2 !== id),
+      selectedTitles: ctx.state.selectedTitles.filter((title) => title.id !== id)
+    });
     ctx.navigate("shows-picks");
   };
   return b`
@@ -2064,6 +2482,7 @@ function renderShowsTab(ctx) {
       <mc-top-bar title="Your shows" show-back @mc-back=${() => ctx.navigate("now")}></mc-top-bar>
       <div class="layout__body" style="padding:16px;">
         <mc-button label="Add shows" @click=${() => ctx.navigate("shows-picker")}></mc-button>
+        ${loading && !shows.length ? b`<p class="muted">Loading titles…</p>` : null}
         <div class="grid-3" style="margin-top:12px;">
           ${shows.map(
     (s2) => b`
@@ -2087,40 +2506,93 @@ var Preferences = registerPlugin("Preferences", {
 });
 
 // src/state/store.ts
-var KEY = "mychannel_user_state_v1";
+var KEY = "mychannel_user_state_v2";
+function scheduleId(dayOfWeek, startTime) {
+  return `slot-${dayOfWeek}-${startTime}`;
+}
+function normalizeSchedule(schedule) {
+  return (schedule ?? []).map((entry) => ({
+    id: scheduleId(entry.dayOfWeek, entry.startTime),
+    showId: entry.showId,
+    dayOfWeek: entry.dayOfWeek,
+    startTime: entry.startTime,
+    endTime: entry.endTime,
+    enabled: entry.enabled
+  }));
+}
 function defaultState() {
   return {
-    version: 1,
+    version: 2,
     onboarded: false,
     region: "US",
     subscription: { tier: "free" },
     streamers: [],
     shows: [],
+    selectedTitles: [],
     schedule: [],
+    channel: [],
     lastOpenedAt: (/* @__PURE__ */ new Date()).toISOString(),
     notificationsEnabled: true
   };
 }
+function migrateState(input) {
+  const base = defaultState();
+  if (!input || typeof input !== "object") {
+    return base;
+  }
+  const legacy = input;
+  if (legacy.version === 2) {
+    return {
+      ...base,
+      ...legacy,
+      schedule: normalizeSchedule(legacy.schedule),
+      selectedTitles: Array.isArray(legacy.selectedTitles) ? legacy.selectedTitles ?? [] : [],
+      channel: Array.isArray(legacy.channel) ? legacy.channel ?? [] : [],
+      lastOpenedAt: legacy.lastOpenedAt ?? base.lastOpenedAt
+    };
+  }
+  return {
+    ...base,
+    onboarded: legacy.onboarded ?? base.onboarded,
+    region: legacy.region ?? base.region,
+    subscription: legacy.subscription ?? base.subscription,
+    streamers: Array.isArray(legacy.streamers) ? legacy.streamers : [],
+    shows: Array.isArray(legacy.shows) ? legacy.shows : [],
+    schedule: normalizeSchedule(legacy.schedule),
+    lastOpenedAt: legacy.lastOpenedAt ?? base.lastOpenedAt,
+    notificationsEnabled: legacy.notificationsEnabled ?? base.notificationsEnabled
+  };
+}
 function isNative() {
   try {
-    return Boolean(window.Capacitor?.isNativePlatform?.());
+    return Boolean(
+      window.Capacitor?.isNativePlatform?.()
+    );
   } catch {
     return false;
   }
 }
 async function loadState() {
+  let raw = null;
   if (isNative()) {
-    const { value } = await Preferences.get({ key: KEY });
-    if (!value) return null;
-    return JSON.parse(value);
+    raw = (await Preferences.get({ key: KEY })).value;
+  } else if (typeof localStorage !== "undefined") {
+    raw = localStorage.getItem(KEY);
   }
-  const raw = localStorage.getItem(KEY);
-  if (!raw) return null;
-  return JSON.parse(raw);
+  if (!raw) {
+    return null;
+  }
+  try {
+    return migrateState(JSON.parse(raw));
+  } catch {
+    return defaultState();
+  }
 }
 async function saveState(state) {
-  state.lastOpenedAt = (/* @__PURE__ */ new Date()).toISOString();
-  const payload = JSON.stringify(state);
+  const payload = JSON.stringify({
+    ...state,
+    lastOpenedAt: (/* @__PURE__ */ new Date()).toISOString()
+  });
   if (isNative()) {
     await Preferences.set({ key: KEY, value: payload });
     return;
@@ -2190,18 +2662,53 @@ function renderAbout(ctx) {
   `;
 }
 
+// src/screens/slot-edit.ts
+var McSlotEditScreen = class extends HTMLElement {
+  static observedAttributes = ["slot-id"];
+  connectedCallback() {
+    this.render();
+  }
+  attributeChangedCallback() {
+    this.render();
+  }
+  render() {
+    const slotId = this.getAttribute("slot-id") ?? "";
+    this.innerHTML = `<h1>Slot edit: ${slotId}</h1>`;
+  }
+};
+if (!customElements.get("mc-slot-edit-screen")) {
+  customElements.define("mc-slot-edit-screen", McSlotEditScreen);
+}
+function renderSlotEdit(ctx, slotId) {
+  return b`
+    <div class="screen layout">
+      <mc-top-bar title="Edit slot" show-back @mc-back=${() => ctx.navigate("/channel")}></mc-top-bar>
+      <div class="layout__body">
+        <mc-slot-edit-screen slot-id=${slotId}></mc-slot-edit-screen>
+        <mc-button label="Close" @click=${() => ctx.navigate("/channel")}></mc-button>
+      </div>
+    </div>
+  `;
+}
+
 // src/router.ts
 function normalizeHash() {
   const h2 = window.location.hash.replace(/^#\/?/, "");
   return h2 || "splash";
 }
 function navigate(hash) {
-  window.location.hash = `#/${hash}`;
+  window.location.hash = `#/${hash.replace(/^\/+/, "")}`;
 }
 function mountRouter(ctx, outlet2) {
   const draw = () => {
     const route = normalizeHash();
     let view;
+    if (route.startsWith("slot-edit/")) {
+      const slotId = decodeURIComponent(route.slice("slot-edit/".length));
+      view = renderSlotEdit(ctx, slotId);
+      D(view, outlet2);
+      return;
+    }
     switch (route) {
       case "splash":
         view = renderSplash(ctx);
@@ -2232,6 +2739,7 @@ function mountRouter(ctx, outlet2) {
         view = renderScheduling(ctx);
         break;
       case "now":
+      case "channel":
         view = renderChannel(ctx);
         break;
       case "week":
@@ -2257,10 +2765,20 @@ function mountRouter(ctx, outlet2) {
 }
 
 // src/main.ts
+var componentsIndexModule = "./components/index";
+void import(componentsIndexModule).catch(() => void 0);
 var outlet = () => document.getElementById("app");
+async function loadRuntimeStreamers(region) {
+  const cached = getCachedProviders(region);
+  if (cached) return cached;
+  const response = await fetchProviders(region);
+  setCachedProviders(region, response.providers);
+  return response.providers;
+}
 async function bootstrap() {
-  const [catalogue, streamers, stored] = await Promise.all([loadCatalogue(), loadStreamers(), loadState()]);
+  const stored = await loadState();
   const state = stored ?? defaultState();
+  const streamers = await loadRuntimeStreamers(state.region).catch(() => []);
   let draftSlots = [];
   const rawDraft = loadDraftSlotsJson();
   if (rawDraft) {
@@ -2283,7 +2801,7 @@ async function bootstrap() {
     patch,
     navigate,
     redraw: () => invalidate(),
-    catalogue,
+    catalogue: [],
     streamers,
     session
   };
