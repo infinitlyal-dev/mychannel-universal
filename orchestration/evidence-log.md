@@ -51,3 +51,11 @@ c3 shipped: commit 579cc12; removed app/src/data/catalogue.ts (app/src/lib/catal
 - Verification: `node --check orchestration/screenshots/run-screenshot-pass.mjs` → exit 0. Not run against a live server (screens don't exist yet — Lane 2 will ship them).
 - Path note: brief envisioned Claude Code CLI in a wt session running this scaffold. That wt session (PID 46512) was launched earlier but the tier-"click" restriction on Windows Terminal blocked keystroke / clipboard injection from the orchestrator. Rather than burn a fresh claude-code spawn on a 250-line scaffold, Vos wrote the files directly. Same output, zero CLI usage consumed.
 - Follow-ups: none blocking. After Lane 2 lands screens + the dev server boots, run `npx playwright install chromium` once, then `node orchestration/screenshots/run-screenshot-pass.mjs` from repo root.
+
+### main.ts placeholder demoted to static import (Vos direct, polish)
+
+- Commit: `4052593`, pushed to `origin/v2-rebuild`.
+- Edit: `app/src/main.ts` L17-18 — removed `const componentsIndexModule = './components/index'; void import(componentsIndexModule).catch(() => undefined);` and inserted `import './components/index';` on L7 alongside the other static component imports.
+- Rationale: c3's dynamic-import indirection existed solely to keep tsc clean before c2's components/index.ts was on disk. c2 shipped (`9b94dfc`) — placeholder is obsolete. Static import is simpler, eager, and matches the pattern used by button/top-bar/progress-bar/poster-card/streamer-tile/modal.
+- Verification: `cd app && npx tsc --noEmit` exit 0, empty log (`C:\Users\27741\AppData\Local\Temp\tsc-main-demote.log`).
+- Diff: `1 file changed, 1 insertion(+), 3 deletions(-)`. Out of all frozen zones (main.ts is router/boot, not c1/c2/c3 lane property).
