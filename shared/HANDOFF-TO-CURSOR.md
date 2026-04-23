@@ -2,6 +2,18 @@
 
 Foundation is ready.
 
+## V1 Foundation Sign-Off
+
+Architect verdict: ship it. Blockers resolved.
+
+Resolved before Cursor handoff:
+
+- Provider hydration now has a 24h in-memory LRU to reduce repeated TMDB bursts.
+- Orphaned `LegacyScheduleEntry` was deleted.
+- Cache policy is declared in [shared/CACHE.md](/C:/dev/mychannel-universal/shared/CACHE.md).
+- `data/streamers.json` now has provider IDs and fallback names for every declared region.
+- V1.5 tech debt is logged in [shared/V1.5-TECH-DEBT.md](/C:/dev/mychannel-universal/shared/V1.5-TECH-DEBT.md).
+
 ## Locked constraints
 
 - Path A deep-links are search URLs only. Title + year. No resolver. No licensed mapping.
