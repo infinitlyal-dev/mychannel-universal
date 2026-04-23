@@ -34,6 +34,11 @@ export function renderWeek(ctx: RouteContext) {
   const slots = scheduleToSlots(ctx.state.schedule);
   const has = (d: 0 | 1 | 2 | 3 | 4 | 5 | 6, b: TimeBand) => slots.some((s) => s.dayOfWeek === d && s.band === b);
   const click = async (d: 0 | 1 | 2 | 3 | 4 | 5 | 6, b: TimeBand) => {
+    const existingSlot = ctx.state.schedule.find((entry) => entry.dayOfWeek === d && inferBand(entry.startTime) === b);
+    if (existingSlot) {
+      ctx.navigate(`slot-edit/${encodeURIComponent(existingSlot.id)}`);
+      return;
+    }
     const nextSlots = toggleSlot(slots, d, b);
     const shows = ctx.catalogue.filter((s) => ctx.state.shows.includes(s.id));
     const schedule = buildSchedule(shows, nextSlots);
