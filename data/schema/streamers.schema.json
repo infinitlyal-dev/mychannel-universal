@@ -1,38 +1,79 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mychannel.app/schema/streamers.json",
-  "title": "Streamers manifest",
+  "title": "Streamers provider manifest",
   "type": "array",
-  "minItems": 9,
-  "maxItems": 9,
+  "minItems": 1,
   "items": {
     "type": "object",
     "additionalProperties": false,
-    "required": ["id", "name", "logo", "regions", "deepLinkSchemes"],
+    "required": [
+      "id",
+      "name",
+      "shortName",
+      "logo",
+      "regions",
+      "tmdbProviderIds",
+      "tmdbProviderNames",
+      "searchUrlTemplates"
+    ],
     "properties": {
       "id": {
         "type": "string",
-        "enum": ["netflix", "disney", "prime", "max", "appletv", "hulu", "paramount", "peacock", "youtube"]
+        "enum": [
+          "netflix",
+          "prime",
+          "disney",
+          "appletv",
+          "max",
+          "hulu",
+          "peacock",
+          "paramount",
+          "showtime",
+          "starz",
+          "youtube"
+        ]
       },
       "name": { "type": "string", "minLength": 1 },
-      "logo": { "type": "string", "pattern": "^assets/streamers/[a-z]+\\.png$" },
+      "shortName": { "type": "string", "minLength": 1 },
+      "logo": { "type": "string", "pattern": "^assets/streamers/[a-z0-9]+\\.png$" },
       "regions": {
         "type": "array",
         "minItems": 1,
-        "maxItems": 2,
         "uniqueItems": true,
         "items": { "type": "string", "enum": ["ZA", "US"] }
       },
-      "deepLinkSchemes": {
+      "tmdbProviderIds": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1 }
+        }
+      },
+      "tmdbProviderNames": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "searchUrlTemplates": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["android", "ios", "web"],
+        "required": ["web", "ios", "android"],
         "properties": {
-          "android": { "type": "string", "minLength": 1 },
+          "web": { "type": "string", "pattern": "^https://.*\\{query\\}" },
           "ios": { "type": "string", "minLength": 1 },
-          "web": { "type": "string", "pattern": "^https://" }
+          "android": { "type": "string", "minLength": 1 }
         }
-      }
+      },
+      "notes": { "type": "string" }
     }
   }
 }
