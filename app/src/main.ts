@@ -4,6 +4,7 @@ import './components/progress-bar';
 import './components/poster-card';
 import './components/streamer-tile';
 import './components/modal';
+import './components/index';
 import { AppLauncher } from '@capacitor/app-launcher';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { fetchProviders } from './lib/library-api';
@@ -13,9 +14,6 @@ import { defaultState, loadState, saveState } from './state/store';
 import type { Region, Streamer, UserState } from './types';
 import type { SlotPick } from './lib/scheduler';
 import { loadDraftSlotsJson } from './lib/web-session';
-
-const componentsIndexModule = './components/index';
-void import(componentsIndexModule).catch(() => undefined);
 
 const outlet = () => document.getElementById('app')!;
 
