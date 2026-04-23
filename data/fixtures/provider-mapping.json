@@ -1,0 +1,95 @@
+{
+  "$comment": "QA fixtures: resolve a streamer from a TMDB watch-provider payload. Used by provider-mapping unit tests.",
+  "cases": [
+    {
+      "name": "Netflix US matches by tmdb provider id",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 8, "provider_name": "Netflix" },
+      "expectStreamerId": "netflix"
+    },
+    {
+      "name": "Netflix ZA ad-tier name alias",
+      "region": "ZA",
+      "tmdbProvider": { "provider_id": 8, "provider_name": "Netflix Standard with Ads" },
+      "expectStreamerId": "netflix"
+    },
+    {
+      "name": "Prime Video US id match",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 9, "provider_name": "Amazon Prime Video" },
+      "expectStreamerId": "prime"
+    },
+    {
+      "name": "Disney+ ZA id match",
+      "region": "ZA",
+      "tmdbProvider": { "provider_id": 337, "provider_name": "Disney Plus" },
+      "expectStreamerId": "disney"
+    },
+    {
+      "name": "Apple TV+ US id match",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 350, "provider_name": "Apple TV Plus" },
+      "expectStreamerId": "appletv"
+    },
+    {
+      "name": "Max legacy HBO Max id still resolves",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 384, "provider_name": "HBO Max" },
+      "expectStreamerId": "max"
+    },
+    {
+      "name": "Max current id",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 1899, "provider_name": "Max" },
+      "expectStreamerId": "max"
+    },
+    {
+      "name": "Hulu ads tier alias",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 15, "provider_name": "Hulu (With Ads)" },
+      "expectStreamerId": "hulu"
+    },
+    {
+      "name": "Peacock premium alias",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 386, "provider_name": "Peacock Premium" },
+      "expectStreamerId": "peacock"
+    },
+    {
+      "name": "Paramount+ id match",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 531, "provider_name": "Paramount Plus" },
+      "expectStreamerId": "paramount"
+    },
+    {
+      "name": "Showtime via Paramount+ with Showtime bundle",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 1770, "provider_name": "Paramount+ with Showtime" },
+      "expectStreamerId": "showtime"
+    },
+    {
+      "name": "Starz id match",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 43, "provider_name": "Starz" },
+      "expectStreamerId": "starz"
+    },
+    {
+      "name": "YouTube ZA",
+      "region": "ZA",
+      "tmdbProvider": { "provider_id": 192, "provider_name": "YouTube" },
+      "expectStreamerId": "youtube"
+    },
+    {
+      "name": "Unknown provider id returns null",
+      "region": "US",
+      "tmdbProvider": { "provider_id": 99999, "provider_name": "Mystery Channel" },
+      "expectStreamerId": null
+    },
+    {
+      "name": "Provider not available in requested region returns null",
+      "region": "ZA",
+      "tmdbProvider": { "provider_id": 15, "provider_name": "Hulu" },
+      "expectStreamerId": null
+    }
+  ]
+}

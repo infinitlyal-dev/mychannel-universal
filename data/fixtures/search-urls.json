@@ -1,0 +1,84 @@
+{
+  "$comment": "QA fixtures for streamer search URL generation. Input: streamer id + query + platform. Output: fully-encoded URL.",
+  "cases": [
+    {
+      "streamerId": "netflix",
+      "platform": "web",
+      "query": "Stranger Things",
+      "expectUrl": "https://www.netflix.com/search?q=Stranger%20Things"
+    },
+    {
+      "streamerId": "prime",
+      "platform": "web",
+      "query": "The Boys",
+      "expectUrl": "https://www.primevideo.com/search/ref=atv_nb_sr?phrase=The%20Boys"
+    },
+    {
+      "streamerId": "disney",
+      "platform": "ios",
+      "query": "Andor",
+      "expectUrl": "https://www.disneyplus.com/search/Andor"
+    },
+    {
+      "streamerId": "appletv",
+      "platform": "web",
+      "query": "Severance",
+      "expectUrl": "https://tv.apple.com/search?term=Severance"
+    },
+    {
+      "streamerId": "max",
+      "platform": "web",
+      "query": "The Last of Us",
+      "expectUrl": "https://play.max.com/search?q=The%20Last%20of%20Us"
+    },
+    {
+      "streamerId": "hulu",
+      "platform": "android",
+      "query": "Only Murders in the Building",
+      "expectUrl": "https://www.hulu.com/search?q=Only%20Murders%20in%20the%20Building"
+    },
+    {
+      "streamerId": "peacock",
+      "platform": "web",
+      "query": "Poker Face",
+      "expectUrl": "https://www.peacocktv.com/search?q=Poker%20Face"
+    },
+    {
+      "streamerId": "paramount",
+      "platform": "web",
+      "query": "Yellowstone",
+      "expectUrl": "https://www.paramountplus.com/search/?term=Yellowstone"
+    },
+    {
+      "streamerId": "showtime",
+      "platform": "web",
+      "query": "Yellowjackets",
+      "expectUrl": "https://www.paramountplus.com/search/?term=Yellowjackets"
+    },
+    {
+      "streamerId": "starz",
+      "platform": "web",
+      "query": "Outlander",
+      "expectUrl": "https://www.starz.com/us/en/search?q=Outlander"
+    },
+    {
+      "streamerId": "youtube",
+      "platform": "web",
+      "query": "MrBeast",
+      "expectUrl": "https://www.youtube.com/results?search_query=MrBeast"
+    },
+    {
+      "streamerId": "netflix",
+      "platform": "web",
+      "query": "Kelders van Geheime",
+      "expectUrl": "https://www.netflix.com/search?q=Kelders%20van%20Geheime"
+    },
+    {
+      "streamerId": "netflix",
+      "platform": "web",
+      "query": "A&B/C",
+      "expectUrl": "https://www.netflix.com/search?q=A%26B%2FC",
+      "note": "Special characters must be percent-encoded"
+    }
+  ]
+}
