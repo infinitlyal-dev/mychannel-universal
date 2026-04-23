@@ -10,8 +10,8 @@
       "ZA": [8]
     },
     "tmdbProviderNames": {
-      "US": ["Netflix"],
-      "ZA": ["Netflix"]
+      "US": ["Netflix", "Netflix Standard with Ads"],
+      "ZA": ["Netflix", "Netflix Standard with Ads"]
     },
     "searchUrlTemplates": {
       "web": "https://www.netflix.com/search?q={query}",
@@ -30,8 +30,8 @@
       "ZA": [9]
     },
     "tmdbProviderNames": {
-      "US": ["Amazon Prime Video"],
-      "ZA": ["Amazon Prime Video"]
+      "US": ["Amazon Prime Video", "Prime Video", "Amazon Prime Video with Ads"],
+      "ZA": ["Amazon Prime Video", "Prime Video", "Amazon Prime Video with Ads"]
     },
     "searchUrlTemplates": {
       "web": "https://www.primevideo.com/search/ref=atv_nb_sr?phrase={query}",
@@ -50,8 +50,8 @@
       "ZA": [337]
     },
     "tmdbProviderNames": {
-      "US": ["Disney Plus"],
-      "ZA": ["Disney Plus"]
+      "US": ["Disney Plus", "Disney+"],
+      "ZA": ["Disney Plus", "Disney+"]
     },
     "searchUrlTemplates": {
       "web": "https://www.disneyplus.com/search/{query}",
@@ -70,8 +70,8 @@
       "ZA": [350]
     },
     "tmdbProviderNames": {
-      "US": ["Apple TV Plus"],
-      "ZA": ["Apple TV Plus"]
+      "US": ["Apple TV Plus", "Apple TV+"],
+      "ZA": ["Apple TV Plus", "Apple TV+"]
     },
     "searchUrlTemplates": {
       "web": "https://tv.apple.com/search?term={query}",
@@ -89,7 +89,7 @@
       "US": [1899, 384]
     },
     "tmdbProviderNames": {
-      "US": ["Max", "HBO Max"]
+      "US": ["Max", "Max Amazon Channel", "HBO Max", "HBO Max Amazon Channel"]
     },
     "searchUrlTemplates": {
       "web": "https://play.max.com/search?q={query}",
@@ -108,7 +108,7 @@
       "US": [15]
     },
     "tmdbProviderNames": {
-      "US": ["Hulu"]
+      "US": ["Hulu", "Hulu (With Ads)", "Hulu Amazon Channel"]
     },
     "searchUrlTemplates": {
       "web": "https://www.hulu.com/search?q={query}",
@@ -126,7 +126,7 @@
       "US": [386]
     },
     "tmdbProviderNames": {
-      "US": ["Peacock", "Peacock Premium", "Peacock Premium Plus"]
+      "US": ["Peacock", "Peacock Premium", "Peacock Premium Plus", "Peacock Premium with Ads"]
     },
     "searchUrlTemplates": {
       "web": "https://www.peacocktv.com/search?q={query}",
@@ -144,7 +144,7 @@
       "US": [531, 2303, 2304]
     },
     "tmdbProviderNames": {
-      "US": ["Paramount Plus", "Paramount Plus Premium", "Paramount Plus Basic with Ads"]
+      "US": ["Paramount Plus", "Paramount+", "Paramount Plus Premium", "Paramount Plus Basic with Ads", "Paramount+ Amazon Channel"]
     },
     "searchUrlTemplates": {
       "web": "https://www.paramountplus.com/search/?term={query}",
@@ -162,7 +162,7 @@
       "US": [1770]
     },
     "tmdbProviderNames": {
-      "US": ["Paramount+ with Showtime"]
+      "US": ["Paramount+ with Showtime", "Showtime", "Showtime Amazon Channel", "Showtime Roku Premium Channel"]
     },
     "searchUrlTemplates": {
       "web": "https://www.paramountplus.com/search/?term={query}",
@@ -181,7 +181,7 @@
       "US": [43]
     },
     "tmdbProviderNames": {
-      "US": ["Starz"]
+      "US": ["Starz", "Starz Amazon Channel", "Starz Roku Premium Channel"]
     },
     "searchUrlTemplates": {
       "web": "https://www.starz.com/us/en/search?q={query}",
@@ -200,8 +200,8 @@
       "ZA": [192]
     },
     "tmdbProviderNames": {
-      "US": ["YouTube"],
-      "ZA": ["YouTube"]
+      "US": ["YouTube", "YouTube Premium"],
+      "ZA": ["YouTube", "YouTube Premium"]
     },
     "searchUrlTemplates": {
       "web": "https://www.youtube.com/results?search_query={query}",
