@@ -9,6 +9,7 @@ npm-debug.log*
 .vscode/
 .idea/
 .playwright-mcp/
+.vercel/
 # Capacitor native projects live under app/ — do not ignore them globally.
 /android/
 /ios/

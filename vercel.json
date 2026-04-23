@@ -1,9 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build:bundle",
-  "outputDirectory": "www",
+  "buildCommand": "cd app && npm install && npm run build:bundle",
+  "outputDirectory": "app/www",
   "framework": null,
   "cleanUrls": true,
+  "installCommand": "npm install --prefix app",
   "rewrites": [
     {
       "source": "/api/:path*",
