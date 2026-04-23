@@ -36,3 +36,18 @@ c3 shipped: commit 579cc12; removed app/src/data/catalogue.ts (app/src/lib/catal
 - Frozen-zone audit: Codex's c3 diff (commit 579cc12) touched only `catalogue.ts`, `live-title-details.ts`, `main.ts`, `router.ts`, `preview.ts`, `scheduling.ts`, `shows-tab.ts`, `slot-edit.ts` + generated build output; it did **not** touch `app/src/components/*` (c2's zone) or `app/src/lib/library-api.ts`/`library-cache.ts` or `shared/*` (c1's zone). Contract held.
 - Verification run (`cd app && npx tsc --noEmit`): exit 0, no errors (log: `C:\Users\27741\AppData\Local\Temp\tsc-c2.log` empty on second pass after rename).
 - Follow-up: Codex left a dynamic-import placeholder in `app/src/main.ts` L17-18 (`const componentsIndexModule = './components/index'; void import(componentsIndexModule).catch(() => undefined);`) to keep c3 tsc-clean before c2 existed. Now that c2 is on disk, this should be demoted to a static `import './components/index';`. Leaving for a small polish commit so c3's lane isn't re-opened mid-lane-1.
+
+### Lane 3 prep — screenshot harness scaffolded (Vos direct, non-blocking)
+
+- Commit: `0559afe`, pushed to `origin/v2-rebuild`.
+- Entry: `orchestration/screenshots/run-screenshot-pass.mjs` (ESM, no top-level await, manual argv parse).
+- Supporting files: `orchestration/screenshots/README.md` (run doc), `orchestration/screenshots/.gitignore` (excludes `out/`).
+- Routes (default): `/`, `/channel`, `/preview`, `/scheduling`, `/shows`, `/slot-edit/test-slot-1`. Overridable via `--routes=csv`.
+- Base (default): `http://localhost:5173`. Overridable via `--base=url`.
+- Output: `orchestration/screenshots/out/<ISO-UTC>/{<slug>.png, manifest.json}`. Overridable via `--out=path`.
+- Viewport: 390×844 (iPhone-ish / Capacitor shell), full-page screenshot per route, `networkidle` + 2 s grace.
+- Playwright: **added** to root `package.json` devDependencies at `^1.52.0`. Chromium binary not installed; runner invokes `npx playwright install chromium` on first use.
+- Exit codes: 0 all-pass, 1 any route error, 2 Playwright missing.
+- Verification: `node --check orchestration/screenshots/run-screenshot-pass.mjs` → exit 0. Not run against a live server (screens don't exist yet — Lane 2 will ship them).
+- Path note: brief envisioned Claude Code CLI in a wt session running this scaffold. That wt session (PID 46512) was launched earlier but the tier-"click" restriction on Windows Terminal blocked keystroke / clipboard injection from the orchestrator. Rather than burn a fresh claude-code spawn on a 250-line scaffold, Vos wrote the files directly. Same output, zero CLI usage consumed.
+- Follow-ups: none blocking. After Lane 2 lands screens + the dev server boots, run `npx playwright install chromium` once, then `node orchestration/screenshots/run-screenshot-pass.mjs` from repo root.
