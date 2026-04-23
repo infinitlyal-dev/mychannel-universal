@@ -59,3 +59,11 @@ c3 shipped: commit 579cc12; removed app/src/data/catalogue.ts (app/src/lib/catal
 - Rationale: c3's dynamic-import indirection existed solely to keep tsc clean before c2's components/index.ts was on disk. c2 shipped (`9b94dfc`) — placeholder is obsolete. Static import is simpler, eager, and matches the pattern used by button/top-bar/progress-bar/poster-card/streamer-tile/modal.
 - Verification: `cd app && npx tsc --noEmit` exit 0, empty log (`C:\Users\27741\AppData\Local\Temp\tsc-main-demote.log`).
 - Diff: `1 file changed, 1 insertion(+), 3 deletions(-)`. Out of all frozen zones (main.ts is router/boot, not c1/c2/c3 lane property).
+### c5 — slot-edit full-screen route shipped
+
+- commit: c76b55c
+- files: app/src/screens/slot-edit.ts (full-screen body), app/src/lib/channel-adapter.ts (new), app/src/lib/picker-return.ts (new), app/src/screens/week.ts (minimal tap handler), shared/V1.5-TECH-DEBT.md (+1 line)
+- week.ts touch: yes, line 39 routes existing slots to `slot-edit/${slot.id}`
+- tsc: clean
+- tests: vitest 3 files / 9 tests passed
+- notes: no modal used; picker return intent is set only because c4 owns consumption; scheduler remains frozen.
