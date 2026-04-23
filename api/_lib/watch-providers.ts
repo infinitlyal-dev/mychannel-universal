@@ -27,6 +27,51 @@ interface TmdbWatchProvidersPayload {
   results?: Partial<Record<Region, TmdbRegionProviders>>;
 }
 
+const PROVIDER_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+const PROVIDER_CACHE_MAX_ENTRIES = 1000;
+
+type ProviderCacheEntry = {
+  expiresAt: number;
+  value: TitleProviders;
+};
+
+const providerCache = new Map<string, ProviderCacheEntry>();
+
+function cacheKey(tmdbType: TmdbTitleType, tmdbId: number, region: Region): string {
+  return `${tmdbType}:${tmdbId}:${region}`;
+}
+
+function getCachedProviders(key: string): TitleProviders | undefined {
+  const entry = providerCache.get(key);
+  if (!entry) {
+    return undefined;
+  }
+
+  if (entry.expiresAt <= Date.now()) {
+    providerCache.delete(key);
+    return undefined;
+  }
+
+  providerCache.delete(key);
+  providerCache.set(key, entry);
+  return entry.value;
+}
+
+function setCachedProviders(key: string, value: TitleProviders): void {
+  providerCache.set(key, {
+    expiresAt: Date.now() + PROVIDER_CACHE_TTL_MS,
+    value,
+  });
+
+  while (providerCache.size > PROVIDER_CACHE_MAX_ENTRIES) {
+    const oldestKey = providerCache.keys().next().value as string | undefined;
+    if (!oldestKey) {
+      break;
+    }
+    providerCache.delete(oldestKey);
+  }
+}
+
 function normalizeOffer(region: Region, offer: TmdbWatchProvider): WatchProviderOffer {
   const streamer = findStreamerForOffer(region, offer.provider_id, offer.provider_name);
 
@@ -51,13 +96,19 @@ export async function fetchNormalizedTitleProviders(
   tmdbId: number,
   region: Region,
 ): Promise<TitleProviders> {
+  const key = cacheKey(tmdbType, tmdbId, region);
+  const cached = getCachedProviders(key);
+  if (cached) {
+    return cached;
+  }
+
   const payload = await tmdbJson<TmdbWatchProvidersPayload>(
     `/${tmdbType}/${tmdbId}/watch/providers`,
     {},
   );
   const regionProviders = payload.results?.[region];
 
-  return {
+  const normalized = {
     link: regionProviders?.link ?? null,
     flatrate: normalizeGroup(region, regionProviders?.flatrate),
     free: normalizeGroup(region, regionProviders?.free),
@@ -65,8 +116,15 @@ export async function fetchNormalizedTitleProviders(
     buy: normalizeGroup(region, regionProviders?.buy),
     rent: normalizeGroup(region, regionProviders?.rent),
   };
+
+  setCachedProviders(key, normalized);
+  return normalized;
 }
 
 export function badgesForTitleProviders(providers: TitleProviders) {
   return badgesFromProviders(providers);
+}
+
+export function resetTitleProviderCache(): void {
+  providerCache.clear();
 }

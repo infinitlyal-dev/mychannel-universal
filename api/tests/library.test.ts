@@ -219,6 +219,74 @@ describe('GET /api/library', () => {
     expect(vi.mocked(fetch).mock.calls[0]?.[0]).toContain('/search/multi?');
   });
 
+  it('reuses provider hydration for repeated titles within the cache TTL', async () => {
+    const discoverBody = {
+      page: 1,
+      total_pages: 1,
+      total_results: 1,
+      results: [
+        {
+          id: 555001,
+          media_type: 'movie',
+          title: 'Cached Heat',
+          original_title: 'Cached Heat',
+          overview: 'Provider cache regression.',
+          poster_path: '/cached-heat.jpg',
+          backdrop_path: '/cached-heat-backdrop.jpg',
+          genre_ids: [80],
+          popularity: 90,
+          vote_average: 7.9,
+          vote_count: 100,
+          original_language: 'en',
+          release_date: '2026-01-01',
+        },
+      ],
+    };
+    const providerBody = {
+      id: 555001,
+      results: {
+        US: {
+          flatrate: [
+            { provider_id: 8, provider_name: 'Netflix', logo_path: '/netflix.png', display_priority: 1 },
+          ],
+        },
+      },
+    };
+
+    vi.mocked(fetch)
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify(discoverBody), {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+        }),
+      )
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify(providerBody), {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+        }),
+      )
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify(discoverBody), {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+        }),
+      );
+
+    const first = await libraryHandler(
+      new Request('https://example.com/api/library?region=US&type=movie&providers=netflix'),
+    );
+    const second = await libraryHandler(
+      new Request('https://example.com/api/library?region=US&type=movie&providers=netflix'),
+    );
+
+    expect(first.status).toBe(200);
+    expect(second.status).toBe(200);
+    expect(vi.mocked(fetch).mock.calls).toHaveLength(3);
+    expect(vi.mocked(fetch).mock.calls[1]?.[0]).toContain('/movie/555001/watch/providers');
+    expect(vi.mocked(fetch).mock.calls[2]?.[0]).toContain('/discover/movie?');
+  });
+
   it('rejects unsupported regions with a typed error', async () => {
     const response = await libraryHandler(
       new Request('https://example.com/api/library?region=GB'),
