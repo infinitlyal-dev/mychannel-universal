@@ -74,3 +74,13 @@ c3 shipped: commit 579cc12; removed app/src/data/catalogue.ts (app/src/lib/catal
 - tsc: clean
 - tests: vitest 3 files / 9 tests passed
 - notes: picker uses real TMDB library/title endpoints through c1 client/cache; no `ctx.catalogue`; `.libraryTitle=` only; slot-edit return intent intentionally left as TODO per brief.
+
+### Vercel preview URL live (Vos direct, for Al's iPhone gate on c6)
+
+- commit: a949ac3 (infra(vercel): move vercel.json to repo root; build from app/ with shared access)
+- rationale: first deploy attempt (project `app`, rooted at `app/`) failed esbuild — `src/lib/library-api.ts` and `src/lib/deep-link.ts` import from `../../../shared/constants` and `../../../data/streamers.json`, outside `app/`. Fix: move vercel.json to repo root so build context is the whole repo; use `cd app && npm install && npm run build:bundle` + output `app/www`; `/api/*` → `https://mychannel-api.vercel.app/api/:path*` proxy still in place (frontend needs zero env vars).
+- Vercel project: `albert-snymans-projects/mychannel-universal-app` (old `app` project removed; fresh link at repo root; GitHub repo auto-connected).
+- Build: esbuild OK, 137.6kb main.js + 17.4kb test-components.js; completed in 26 s.
+- Preview URL: `https://mychannel-universal-b6cs2z0s9-albert-snymans-projects.vercel.app` — HTTP 200, `<title>MyChannel</title>`, publicly accessible (no Vercel SSO gate).
+- Backend proxy verified: `GET /api/health` → `{"status":"ok","version":"1.0.0","timestamp":"2026-04-23T17:18:47.702Z"}` via rewrite to mychannel-api.
+- Gate: Al's 10-minute iPhone Safari walk on this URL. c6 kickoff blocked pending his pass/fail.
