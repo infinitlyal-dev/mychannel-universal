@@ -194,14 +194,6 @@ export interface UserState {
   notificationsEnabled?: boolean;
 }
 
-export interface LegacyScheduleEntry {
-  showId: string;
-  dayOfWeek: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-  startTime: string;
-  endTime: string;
-  enabled: boolean;
-}
-
 export type ScheduleEntry = ScheduleSlot & {
   showId?: string;
   titleId?: string;
