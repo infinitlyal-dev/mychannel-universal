@@ -67,3 +67,10 @@ c3 shipped: commit 579cc12; removed app/src/data/catalogue.ts (app/src/lib/catal
 - tsc: clean
 - tests: vitest 3 files / 9 tests passed
 - notes: no modal used; picker return intent is set only because c4 owns consumption; scheduler remains frozen.
+### c4 — library-picker shipped
+
+- commit: 583218c
+- files: app/src/screens/shows.ts (rebuild), app/src/types.ts (+PersistedTitleClient), shared/V1.5-TECH-DEBT.md (+1 line)
+- tsc: clean
+- tests: vitest 3 files / 9 tests passed
+- notes: picker uses real TMDB library/title endpoints through c1 client/cache; no `ctx.catalogue`; `.libraryTitle=` only; slot-edit return intent intentionally left as TODO per brief.
